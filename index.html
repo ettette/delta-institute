@@ -413,11 +413,14 @@
               </div>
             </div>
 
-            <!-- Form card with overlay -->
+            <!-- Form card with overlay + required markers + summary -->
             <div class="relative rounded-3xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40">
               <h3 class="text-base font-semibold text-slate-50">
                 Quick interest form
               </h3>
+              <p class="mt-1 text-[0.7rem] text-slate-400">
+                <span class="text-red-400">*</span> indicates required fields.
+              </p>
 
               <!-- SUCCESS OVERLAY -->
               <div
@@ -434,7 +437,7 @@
                 </div>
               </div>
 
-              <!-- Replace YOUR_FORMSPREE_ID with your actual ID from Formspree -->
+              <!-- Formspree form -->
               <form
                 id="interestForm"
                 class="mt-4 space-y-3"
@@ -443,7 +446,7 @@
               >
                 <div>
                   <label class="text-xs text-slate-200">
-                    Student name
+                    Student name <span class="text-red-400">*</span>
                     <input
                       type="text"
                       name="student_name"
@@ -455,7 +458,7 @@
                 </div>
                 <div>
                   <label class="text-xs text-slate-200">
-                    Parent / guardian email
+                    Parent / guardian email <span class="text-red-400">*</span>
                     <input
                       type="email"
                       name="parent_email"
@@ -488,12 +491,18 @@
                 <div>
                   <label class="text-xs text-slate-200">
                     Target test date
-                    <input
-                      type="text"
+                    <select
                       name="test_date"
                       class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
-                      placeholder="e.g. March SAT"
-                    />
+                    >
+                      <option value="">Select a test date (optional)</option>
+                      <option value="December 6">December 6</option>
+                      <option value="March 14">March 14</option>
+                      <option value="May 2">May 2</option>
+                      <option value="June 6">June 6</option>
+                      <option value="Next school year">Next school year</option>
+                      <option value="Undecided">Undecided</option>
+                    </select>
                   </label>
                 </div>
                 <div>
@@ -515,6 +524,14 @@
                   Submit interest
                 </button>
               </form>
+
+              <!-- Submission summary (copy shown to client) -->
+              <div
+                id="submissionSummary"
+                class="mt-4 hidden rounded-2xl border border-slate-700 bg-slate-900/80 p-4 text-xs text-slate-200"
+              >
+                <!-- Filled by JS after successful submit -->
+              </div>
             </div>
           </div>
         </div>
@@ -535,7 +552,7 @@
     </footer>
   </div>
 
-  <!-- JS: menu + section animations + Formspree AJAX -->
+  <!-- JS: menu + section animations + Formspree AJAX + summary -->
   <script>
     const menuButton = document.getElementById('menuButton');
     const sideMenuOverlay = document.getElementById('sideMenuOverlay');
@@ -598,9 +615,10 @@
       observer.observe(section);
     });
 
-    // Formspree AJAX submit with overlay
+    // Formspree AJAX submit with overlay + summary
     const interestForm = document.getElementById('interestForm');
     const formSuccessOverlay = document.getElementById('formSuccessOverlay');
+    const submissionSummary = document.getElementById('submissionSummary');
 
     if (interestForm && formSuccessOverlay) {
       interestForm.addEventListener('submit', async (e) => {
@@ -613,6 +631,14 @@
         submitButton.disabled = true;
         submitButton.textContent = 'Submitting...';
 
+        // Grab values before we reset the form
+        const studentName = formData.get('student_name') || '';
+        const parentEmail = formData.get('parent_email') || '';
+        const currentScore = formData.get('current_score') || '';
+        const targetScore = formData.get('target_score') || '';
+        const testDate = formData.get('test_date') || '';
+        const details = formData.get('details') || '';
+
         try {
           const response = await fetch(interestForm.action, {
             method: 'POST',
@@ -621,10 +647,28 @@
           });
 
           if (response.ok) {
+            // Reset form
             interestForm.reset();
-            // Show overlay
+
+            // Show success overlay
             formSuccessOverlay.classList.remove('opacity-0', 'pointer-events-none');
             formSuccessOverlay.classList.add('opacity-100');
+
+            // Fill and show submission summary
+            if (submissionSummary) {
+              submissionSummary.innerHTML = `
+                <div class="font-semibold mb-2 text-slate-100">Copy of your responses</div>
+                <div class="space-y-1">
+                  <div><span class="font-semibold text-slate-200">Student name:</span> <span class="text-slate-300">${studentName || '—'}</span></div>
+                  <div><span class="font-semibold text-slate-200">Parent / guardian email:</span> <span class="text-slate-300">${parentEmail || '—'}</span></div>
+                  <div><span class="font-semibold text-slate-200">Current / practice SAT score:</span> <span class="text-slate-300">${currentScore || '—'}</span></div>
+                  <div><span class="font-semibold text-slate-200">Target score:</span> <span class="text-slate-300">${targetScore || '—'}</span></div>
+                  <div><span class="font-semibold text-slate-200">Target test date:</span> <span class="text-slate-300">${testDate || '—'}</span></div>
+                  <div><span class="font-semibold text-slate-200">Anything else we should know?:</span> <span class="text-slate-300">${details || '—'}</span></div>
+                </div>
+              `;
+              submissionSummary.classList.remove('hidden');
+            }
 
             // Hide overlay after a few seconds
             setTimeout(() => {
