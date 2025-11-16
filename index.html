@@ -1,535 +1,585 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Delta Institute of Academics | SAT Prep</title>
-  <!-- Tailwind CSS CDN -->
+  <title>Delta Institute of Academics | Ace Your SAT, or Your Money Back</title>
+  <meta name="description" content="Personalized SAT tutoring with a 100% money back guarantee. The Delta Institute helps you ace your SAT and stand out to top universities." />
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Section entrance animation (non-top section) */
+    .section-hidden {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+    .section-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
-<body class="bg-slate-950 text-slate-50">
-  <!-- Page wrapper -->
-  <div class="min-h-screen">
-    <!-- Header / Navbar -->
-    <header class="sticky top-0 z-30 border-b border-slate-800 bg-slate-950/80 backdrop-blur">
-      <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <div class="flex items-center gap-2">
-          <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-500 text-sm font-bold text-slate-950">
-            Δ
-          </div>
-          <div>
-            <div class="text-sm font-semibold tracking-wide text-slate-100">
-              Delta Institute of Academics
+<body class="bg-[#020617] text-slate-100">
+  <div class="min-h-screen flex flex-col">
+
+    <!-- TOP BAR WITH MENU BUTTON ON THE LEFT -->
+    <header class="sticky top-0 z-40 border-b border-slate-800 bg-[#020617]/95 backdrop-blur">
+      <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+        <!-- Left side: menu icon + logo/name -->
+        <div class="flex items-center gap-3">
+          <!-- Menu button (three thin lines) -->
+          <button
+            id="menuButton"
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-700 bg-slate-900 shadow-sm hover:bg-slate-800 transition"
+            aria-label="Open navigation menu"
+          >
+            <div class="flex flex-col justify-center space-y-[3px]">
+              <span class="block h-[1px] w-5 rounded-full bg-slate-100"></span>
+              <span class="block h-[1px] w-5 rounded-full bg-slate-100"></span>
+              <span class="block h-[1px] w-5 rounded-full bg-slate-100"></span>
             </div>
-            <div class="text-xs text-slate-400">Focused SAT Preparation</div>
+          </button>
+
+          <!-- Logo + text -->
+          <div class="flex items-center gap-2">
+            <div class="h-9 w-9 rounded-xl bg-slate-900 flex items-center justify-center overflow-hidden border border-slate-700">
+              <!-- Put your logo file as logo-delta.png in the same folder as this HTML -->
+              <img src="logo-delta.png" alt="Delta Institute of Academics logo" class="h-full w-full object-contain" />
+            </div>
+            <div class="leading-tight">
+              <div class="text-sm font-semibold text-slate-50">
+                Delta Institute of Academics
+              </div>
+              <div class="text-[0.7rem] text-slate-400">
+                SAT Tutoring &amp; Test Prep
+              </div>
+            </div>
           </div>
         </div>
 
-        <nav class="hidden items-center gap-6 text-sm text-slate-300 md:flex">
-          <a href="#programs" class="transition hover:text-sky-400">Programs</a>
-          <a href="#results" class="transition hover:text-sky-400">Results</a>
-          <a href="#how-it-works" class="transition hover:text-sky-400">How It Works</a>
-          <a href="#faq" class="transition hover:text-sky-400">FAQ</a>
-          <a href="#contact" class="transition hover:text-sky-400">Contact</a>
-          <a
-            href="#contact"
-            class="rounded-full border border-sky-500 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-sky-100 transition hover:bg-sky-500 hover:text-slate-950"
-          >
-            Free Consultation
-          </a>
-        </nav>
+        <!-- Right side: CTA -->
+        <a
+          href="#contact"
+          class="hidden sm:inline-block rounded-full bg-[#F6C453] px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-wide text-[#020617] shadow-sm hover:bg-[#f8d16e] transition"
+        >
+          Free Consultation
+        </a>
       </div>
     </header>
 
-    <!-- Main content -->
-    <main class="mx-auto max-w-6xl px-4">
-      <!-- Hero section -->
-      <section class="flex flex-col gap-10 py-16 md:flex-row md:items-center md:py-20">
-        <div class="flex-1">
-          <div class="mb-4 inline-flex items-center rounded-full border border-sky-500/40 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-300">
-            SAT Prep • Tutoring • Score Strategy
+    <!-- SLIDE-IN SIDE MENU -->
+    <div
+      id="sideMenuOverlay"
+      class="fixed inset-0 z-30 bg-black/60 opacity-0 pointer-events-none transition-opacity duration-300 ease-out"
+    >
+      <aside
+        id="sideMenuPanel"
+        class="absolute inset-y-0 left-0 w-64 max-w-[80%] bg-[#020617] border-r border-slate-800 transform -translate-x-full transition-transform duration-300 ease-out flex flex-col"
+      >
+        <div class="px-4 py-4 border-b border-slate-800 flex items-center gap-2">
+          <div class="h-9 w-9 rounded-xl bg-slate-900 flex items-center justify-center overflow-hidden border border-slate-700">
+            <img src="logo-delta.png" alt="Delta Institute logo" class="h-full w-full object-contain" />
           </div>
-          <h1 class="text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl md:text-5xl">
-            Raise your SAT score with
-            <span class="bg-gradient-to-r from-sky-400 to-cyan-300 bg-clip-text text-transparent">
-              focused coaching
-            </span>.
-          </h1>
-          <p class="mt-4 max-w-xl text-sm leading-relaxed text-slate-300 md:text-base">
-            At Delta Institute of Academics, we specialize in SAT test preparation.
-            Every student receives a clear plan, expert instruction, and targeted practice
-            designed to turn effort into real score gains.
-          </p>
-          <div class="mt-6 flex flex-wrap items-center gap-3">
+          <div class="leading-tight">
+            <div class="text-sm font-semibold text-slate-50">
+              Delta Institute of Academics
+            </div>
+            <div class="text-[0.7rem] text-slate-400">
+              SAT Tutoring &amp; Test Prep
+            </div>
+          </div>
+        </div>
+
+        <nav class="flex-1 px-3 py-3 text-sm text-slate-200 space-y-1">
+          <a data-nav-link href="#top" class="block rounded-lg px-3 py-2 hover:bg-slate-900 hover:text-[#22D3EE]">
+            Overview
+          </a>
+          <a data-nav-link href="#programs" class="block rounded-lg px-3 py-2 hover:bg-slate-900 hover:text-[#22D3EE]">
+            Programs
+          </a>
+          <a data-nav-link href="#why-sat" class="block rounded-lg px-3 py-2 hover:bg-slate-900 hover:text-[#22D3EE]">
+            Why SAT Scores Matter
+          </a>
+          <a data-nav-link href="#about" class="block rounded-lg px-3 py-2 hover:bg-slate-900 hover:text-[#22D3EE]">
+            About Us
+          </a>
+          <a data-nav-link href="#testimonials" class="block rounded-lg px-3 py-2 hover:bg-slate-900 hover:text-[#22D3EE]">
+            What Our Students Say
+          </a>
+          <a data-nav-link href="#contact" class="block rounded-lg px-3 py-2 hover:bg-slate-900 hover:text-[#22D3EE]">
+            Contact Us
+          </a>
+        </nav>
+
+        <div class="px-3 py-4 border-t border-slate-800">
+          <a
+            data-nav-link
+            href="#contact"
+            class="block w-full text-center rounded-full bg-[#F6C453] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-[#020617] shadow-sm hover:bg-[#f8d16e] transition"
+          >
+            Book a Free SAT Consultation
+          </a>
+        </div>
+      </aside>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1">
+
+      <!-- TOP SECTION (no entrance animation) -->
+      <section
+        id="top"
+        class="min-h-[80vh] border-b border-slate-800 bg-gradient-to-br from-[#020617] via-[#020617] to-[#0B3558] flex items-center"
+      >
+        <div class="mx-auto max-w-5xl px-4 py-12 md:py-20">
+          <div class="max-w-3xl">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-50">
+              Ace Your SAT,
+              <span class="text-[#F6C453]">or your money back!</span>
+            </h1>
+          </div>
+
+          <!-- MINI TABS -->
+          <div class="mt-8 grid gap-4 md:grid-cols-3">
+            <!-- Tab 1 -->
+            <div class="rounded-2xl border border-slate-700 bg-slate-900/80 p-4 shadow-lg shadow-black/40">
+              <div class="text-sm font-semibold text-[#22D3EE]">
+                Personalized SAT tutoring
+              </div>
+              <p class="mt-2 text-xs sm:text-sm text-slate-200">
+                Work one-on-one with a top-scoring tutor who builds a study plan around your strengths, weaknesses, and
+                target schools. Each session is customized to your pace, learning style, and schedule.
+              </p>
+            </div>
+            <!-- Tab 2 -->
+            <div class="rounded-2xl border border-slate-700 bg-slate-900/80 p-4 shadow-lg shadow-black/40">
+              <div class="text-sm font-semibold text-[#F6C453]">
+                100% money back guarantee
+              </div>
+              <p class="mt-2 text-xs sm:text-sm text-slate-200">
+                Complete your program and follow your personalized plan—if your SAT score doesn’t improve, we refund your
+                tuition.
+              </p>
+            </div>
+            <!-- Tab 3 -->
+            <div class="rounded-2xl border border-slate-700 bg-slate-900/80 p-4 shadow-lg shadow-black/40">
+              <div class="text-sm font-semibold text-[#22D3EE]">
+                Connect with peers
+              </div>
+              <p class="mt-2 text-xs sm:text-sm text-slate-200">
+                Join others in preparing for the SAT. Share strategies, stay accountable, and turn test prep into a
+                collaborative, encouraging experience.
+              </p>
+            </div>
+          </div>
+
+          <!-- BUTTONS -->
+          <div class="mt-8 flex flex-wrap gap-3">
             <a
               href="#contact"
-              class="rounded-xl bg-sky-500 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-md shadow-sky-500/30 transition hover:bg-sky-400"
+              class="flex-1 sm:flex-none rounded-xl bg-[#F6C453] px-6 py-2.5 text-sm font-semibold text-[#020617] text-center shadow-md shadow-black/40 hover:bg-[#f8d16e] transition"
             >
-              Book a free consultation
+              Book a Free SAT Consultation
             </a>
             <a
               href="#programs"
-              class="text-sm font-medium text-sky-300 underline-offset-4 hover:underline"
+              class="flex-1 sm:flex-none rounded-xl border border-[#22D3EE] px-6 py-2.5 text-sm font-semibold text-[#22D3EE] text-center bg-transparent hover:bg-slate-900 transition"
             >
-              View SAT programs
+              View Programs &amp; Pricing
             </a>
           </div>
-          <div class="mt-6 grid max-w-lg grid-cols-3 gap-3 text-xs text-slate-300 md:text-sm">
-            <div>
-              <div class="text-lg font-semibold text-sky-300 md:text-xl">
-                +160
+
+          <!-- TOP ABOUT CARD (simplified, no logo) -->
+          <div class="mt-10 max-w-xl rounded-2xl border border-slate-700 bg-slate-900/80 p-4 shadow-lg shadow-black/40">
+            <div class="space-y-2">
+              <div class="text-xs font-semibold uppercase tracking-[0.2em] text-[#F6C453]">
+                Delta Institute of Academics
               </div>
-              <div class="text-slate-400">Average score increase*</div>
-            </div>
-            <div>
-              <div class="text-lg font-semibold text-sky-300 md:text-xl">
-                1:1 &amp; Group
-              </div>
-              <div class="text-slate-400">Flexible formats</div>
-            </div>
-            <div>
-              <div class="text-lg font-semibold text-sky-300 md:text-xl">
-                Top 5%
-              </div>
-              <div class="text-slate-400">Tutor SAT scores</div>
-            </div>
-          </div>
-          <p class="mt-2 text-[0.7rem] text-slate-500">
-            *Typical for students who complete their diagnostic, homework, and recommended practice tests.
-          </p>
-        </div>
-
-        <div class="flex-1">
-          <div class="mt-4 rounded-2xl border border-slate-700 bg-gradient-to-br from-slate-900 via-slate-900/40 to-sky-900/40 p-5 text-sm text-slate-200 shadow-xl md:mt-0">
-            <h2 class="text-base font-semibold text-sky-100 md:text-lg">
-              What we focus on
-            </h2>
-            <ul class="mt-4 space-y-3 text-xs text-slate-200 md:text-sm">
-              <li class="flex gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-sky-400"></span>
-                Mastering SAT Reading &amp; Writing passages with efficient annotation strategies.
-              </li>
-              <li class="flex gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-sky-400"></span>
-                Building core math skills (algebra, functions, data) and test-specific shortcuts.
-              </li>
-              <li class="flex gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-sky-400"></span>
-                Timing, pacing, and guessing strategies designed for the digital SAT.
-              </li>
-              <li class="flex gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-sky-400"></span>
-                Personalized study plans based on a diagnostic test and target colleges.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Programs -->
-      <section id="programs" class="py-12 md:py-16">
-        <div class="flex items-end justify-between gap-4">
-          <div>
-            <h2 class="text-2xl font-semibold text-slate-50 md:text-3xl">
-              SAT Programs
-            </h2>
-            <p class="mt-2 text-sm text-slate-300 md:text-base">
-              Choose the structure that fits your schedule, goals, and learning style.
-            </p>
-          </div>
-          <div class="text-xs text-slate-400 md:text-sm">
-            <div>Flexible start dates</div>
-            <div>Online or in-person (where available)</div>
-          </div>
-        </div>
-
-        <div class="mt-6 grid gap-5 md:mt-8 md:grid-cols-3">
-          <!-- Program 1 -->
-          <div class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg shadow-black/40">
-            <span class="mb-2 inline-flex items-center gap-2 text-xs">
-              <span class="rounded-full bg-sky-500/10 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-sky-300">
-                Most Personalized
-              </span>
-            </span>
-            <h3 class="text-base font-semibold text-slate-50 md:text-lg">
-              1:1 Elite SAT Tutoring
-            </h3>
-            <p class="mt-2 text-xs leading-relaxed text-slate-300 md:text-sm">
-              Fully customized SAT prep for students aiming for top-percentile scores and competitive colleges.
-            </p>
-            <ul class="mt-3 flex-1 space-y-1.5 text-xs text-slate-300 md:text-sm">
-              <li class="flex gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-sky-400"></span>
-                Diagnostic test + score report
-              </li>
-              <li class="flex gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-sky-400"></span>
-                Weekly 1:1 sessions
-              </li>
-              <li class="flex gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-sky-400"></span>
-                Custom homework plan
-              </li>
-            </ul>
-            <div class="mt-4 text-xs text-slate-400">
-              Contact us for schedule &amp; pricing.
-            </div>
-          </div>
-
-          <!-- Program 2 -->
-          <div class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg shadow-black/40">
-            <span class="mb-2 inline-flex items-center gap-2 text-xs">
-              <span class="rounded-full bg-sky-500/10 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-sky-300">
-                Best Value
-              </span>
-            </span>
-            <h3 class="text-base font-semibold text-slate-50 md:text-lg">
-              Small Group SAT Class
-            </h3>
-            <p class="mt-2 text-xs leading-relaxed text-slate-300 md:text-sm">
-              Live, interactive classes capped at 6 students, covering all SAT sections with guided practice.
-            </p>
-            <ul class="mt-3 flex-1 space-y-1.5 text-xs text-slate-300 md:text-sm">
-              <li class="flex gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-sky-400"></span>
-                Structured 8–10 week program
-              </li>
-              <li class="flex gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-sky-400"></span>
-                Section-by-section content review
-              </li>
-              <li class="flex gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-sky-400"></span>
-                Timed practice &amp; strategies
-              </li>
-            </ul>
-            <div class="mt-4 text-xs text-slate-400">
-              Contact us for schedule &amp; pricing.
-            </div>
-          </div>
-
-          <!-- Program 3 -->
-          <div class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/60 p-5 shadow-lg shadow-black/40">
-            <span class="mb-2 inline-flex items-center gap-2 text-xs">
-              <span class="rounded-full bg-sky-500/10 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-sky-300">
-                Fast Track
-              </span>
-            </span>
-            <h3 class="text-base font-semibold text-slate-50 md:text-lg">
-              SAT Bootcamp
-            </h3>
-            <p class="mt-2 text-xs leading-relaxed text-slate-300 md:text-sm">
-              Intensive short-term prep for upcoming test dates, focused on strategies, timing, and confidence.
-            </p>
-            <ul class="mt-3 flex-1 space-y-1.5 text-xs text-slate-300 md:text-sm">
-              <li class="flex gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-sky-400"></span>
-                Weekend or holiday intensives
-              </li>
-              <li class="flex gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-sky-400"></span>
-                Full-length practice test
-              </li>
-              <li class="flex gap-2">
-                <span class="mt-1 h-1.5 w-1.5 rounded-full bg-sky-400"></span>
-                Score-boost strategy sessions
-              </li>
-            </ul>
-            <div class="mt-4 text-xs text-slate-400">
-              Contact us for schedule &amp; pricing.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- How it works -->
-      <section id="how-it-works" class="border-y border-slate-800 py-12 md:py-16">
-        <div class="grid gap-10 md:grid-cols-[1.1fr,1fr] md:items-center">
-          <div>
-            <h2 class="text-2xl font-semibold text-slate-50 md:text-3xl">
-              How Delta SAT prep works
-            </h2>
-            <p class="mt-3 text-sm text-slate-300 md:text-base">
-              We don’t just hand you practice tests—we walk with you from diagnostic
-              to test day with a clear roadmap.
-            </p>
-            <ol class="mt-5 space-y-4 text-sm text-slate-200">
-              <li class="flex gap-3">
-                <div class="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-xs font-bold text-slate-950">
-                  1
-                </div>
-                <div>
-                  <div class="font-semibold">Diagnostic &amp; goals</div>
-                  <p class="text-xs text-slate-300 md:text-sm">
-                    You take a diagnostic SAT. We review your score report, strengths,
-                    and target colleges to define a score goal and timeline.
-                  </p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <div class="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-xs font-bold text-slate-950">
-                  2
-                </div>
-                <div>
-                  <div class="font-semibold">Customized lesson plan</div>
-                  <p class="text-xs text-slate-300 md:text-sm">
-                    We design a weekly plan covering Reading &amp; Writing, Math,
-                    timing strategies, and targeted drills for your weak spots.
-                  </p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <div class="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-xs font-bold text-slate-950">
-                  3
-                </div>
-                <div>
-                  <div class="font-semibold">Live instruction &amp; practice</div>
-                  <p class="text-xs text-slate-300 md:text-sm">
-                    In sessions, we teach concepts, model high-scoring thinking, and
-                    work through real SAT-style questions together.
-                  </p>
-                </div>
-              </li>
-              <li class="flex gap-3">
-                <div class="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-sky-500 text-xs font-bold text-slate-950">
-                  4
-                </div>
-                <div>
-                  <div class="font-semibold">Full-length practice &amp; feedback</div>
-                  <p class="text-xs text-slate-300 md:text-sm">
-                    You complete timed practice tests. We analyze your results and
-                    adjust your strategy to maximize improvement before test day.
-                  </p>
-                </div>
-              </li>
-            </ol>
-          </div>
-
-          <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 text-sm text-slate-200 shadow-xl">
-            <h3 class="text-base font-semibold text-slate-50 md:text-lg">
-              Parent &amp; student communication
-            </h3>
-            <p class="mt-3 text-xs text-slate-300 md:text-sm">
-              Families receive clear updates on attendance, homework completion, and
-              progress. You&apos;ll always know where your student stands and what
-              to expect on test day.
-            </p>
-            <ul class="mt-4 space-y-2 text-xs text-slate-300 md:text-sm">
-              <li>• Session summaries and key takeaways</li>
-              <li>• Recommended practice between meetings</li>
-              <li>• Score tracking across practice tests</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- Results section -->
-      <section id="results" class="py-12 md:py-16">
-        <h2 class="text-2xl font-semibold text-slate-50 md:text-3xl">
-          Results that matter
-        </h2>
-        <p class="mt-2 text-sm text-slate-300 md:text-base">
-          Our goal is simple: help students unlock scores that open doors to more colleges
-          and scholarships.
-        </p>
-
-        <div class="mt-6 grid gap-5 md:grid-cols-3">
-          <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 text-sm text-slate-200">
-            <div class="text-xs font-semibold uppercase tracking-wide text-sky-300">
-              Score Growth
-            </div>
-            <div class="mt-2 text-3xl font-semibold text-sky-200">
-              +100–200
-            </div>
-            <div class="mt-1 text-xs text-slate-400">
-              Typical point increase with full program completion.
-            </div>
-          </div>
-          <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 text-sm text-slate-200">
-            <div class="text-xs font-semibold uppercase tracking-wide text-sky-300">
-              College Readiness
-            </div>
-            <p class="mt-2 text-xs text-slate-300 md:text-sm">
-              We don&apos;t just teach tricks. We build real reading, writing, and
-              math foundations that carry into AP classes and college coursework.
-            </p>
-          </div>
-          <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 text-sm text-slate-200">
-            <div class="text-xs font-semibold uppercase tracking-wide text-sky-300">
-              Confidence
-            </div>
-            <p class="mt-2 text-xs text-slate-300 md:text-sm">
-              Students walk into test day knowing what to expect, how to pace themselves,
-              and how to handle tough questions without panicking.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- FAQ -->
-      <section id="faq" class="border-y border-slate-800 py-12 md:py-16">
-        <h2 class="text-2xl font-semibold text-slate-50 md:text-3xl">
-          Frequently Asked Questions
-        </h2>
-        <div class="mt-6 grid gap-5 md:grid-cols-2">
-          <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-200">
-            <div class="text-sm font-semibold text-slate-50">
-              Who is Delta Institute of Academics for?
-            </div>
-            <p class="mt-2 text-xs text-slate-300 md:text-sm">
-              Motivated high school students who want a structured plan, expert feedback,
-              and measurable score improvement on the SAT.
-            </p>
-          </div>
-          <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-200">
-            <div class="text-sm font-semibold text-slate-50">
-              How much improvement do students typically see?
-            </div>
-            <p class="mt-2 text-xs text-slate-300 md:text-sm">
-              While results vary, many students see a 100–200 point increase when they
-              follow their customized study plan and complete assigned practice.
-            </p>
-          </div>
-          <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-200">
-            <div class="text-sm font-semibold text-slate-50">
-              Do you offer online tutoring?
-            </div>
-            <p class="mt-2 text-xs text-slate-300 md:text-sm">
-              Yes. We work with students online using interactive tools, shared
-              whiteboards, and digital materials.
-            </p>
-          </div>
-          <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-200">
-            <div class="text-sm font-semibold text-slate-50">
-              When should I start SAT prep?
-            </div>
-            <p class="mt-2 text-xs text-slate-300 md:text-sm">
-              Most students start 3–6 months before their target test date, but we can
-              design a plan for tighter timelines too.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact / CTA -->
-      <section id="contact" class="py-12 md:py-16">
-        <div class="grid gap-10 md:grid-cols-[1.2fr,1fr] md:items-center">
-          <div>
-            <h2 class="text-2xl font-semibold text-slate-50 md:text-3xl">
-              Book a free SAT consult
-            </h2>
-            <p class="mt-2 text-sm text-slate-300 md:text-base">
-              Share your current score (or practice test), target schools, and test date.
-              We&apos;ll recommend a plan for your goals—no obligation.
-            </p>
-            <div class="mt-5 space-y-2 text-sm text-slate-200">
-              <p>
-                📧 Email:
-                <a
-                  href="mailto:info@deltainstituteacademics.com"
-                  class="font-medium text-sky-300 underline-offset-4 hover:underline"
-                >
-                  info@deltainstituteacademics.com
-                </a>
-              </p>
-              <p class="text-slate-400 text-xs md:text-sm">
-                You can also include your high school, graduation year, and preferred
-                days/times for tutoring.
+              <p class="text-sm text-slate-100">
+                We’re a team of SAT top scorers offering personalized, elite-level tutoring in both Math and English, focused on the exact strategies we used to excel on the SAT.
               </p>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div class="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 text-sm text-slate-200">
-            <h3 class="text-base font-semibold text-slate-50 md:text-lg">
-              Quick interest form
-            </h3>
-            <p class="mt-2 text-xs text-slate-300 md:text-sm">
-              (This is a front-end example only. You can connect it later to tools
-              like Formspree or a custom API.)
+      <!-- PROGRAMS SECTION -->
+      <section id="programs" class="min-h-[80vh] border-b border-slate-800 bg-[#020617] flex items-center">
+        <div class="mx-auto max-w-5xl px-4 py-12 md:py-20 section-hidden" data-animate-section>
+          <div class="max-w-2xl">
+            <h2 class="text-2xl md:text-3xl font-semibold text-slate-50">
+              Choose how you want to prep
+            </h2>
+            <p class="mt-3 text-sm md:text-base text-slate-300">
+              Pick the SAT program that fits your schedule, learning style, and goals. All options include personalized
+              guidance for both Math and English.
             </p>
-            <form class="mt-4 space-y-3" action="#" method="POST">
-              <div>
-                <label class="text-xs text-slate-300">
-                  Student name
-                  <input
-                    type="text"
-                    class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-xs text-slate-100 outline-none focus:border-sky-500"
-                    placeholder="First and last name"
-                  />
-                </label>
+          </div>
+
+          <div class="mt-8 grid gap-6 md:grid-cols-3">
+            <!-- Program 1: Private (links to private.html) -->
+            <a
+              href="private.html"
+              class="flex flex-col rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40 hover:border-[#22D3EE] hover:-translate-y-1 transition transform"
+            >
+              <div class="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[#22D3EE]">
+                Private
               </div>
-              <div>
-                <label class="text-xs text-slate-300">
-                  Parent / guardian email
-                  <input
-                    type="email"
-                    class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-xs text-slate-100 outline-none focus:border-sky-500"
-                    placeholder="you@example.com"
-                  />
-                </label>
+              <h3 class="mt-1 text-base font-semibold text-slate-50">
+                Private SAT tutoring
+              </h3>
+              <p class="mt-2 text-sm text-slate-200">
+                Work directly with a dedicated tutor for fully personalized instruction and feedback on every section of
+                the SAT.
+              </p>
+              <ul class="mt-3 flex-1 space-y-1.5 text-sm text-slate-300">
+                <li>• Custom lesson plans built around your goals</li>
+                <li>• Deep review of your toughest question types</li>
+                <li>• Flexible pacing based on your schedule</li>
+              </ul>
+              <span class="mt-4 text-xs font-semibold text-[#22D3EE]">
+                Learn more →
+              </span>
+            </a>
+
+            <!-- Program 2: Group (links to group.html) -->
+            <a
+              href="group.html"
+              class="flex flex-col rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40 hover:border-[#F6C453] hover:-translate-y-1 transition transform"
+            >
+              <div class="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[#F6C453]">
+                Group
               </div>
-              <div class="grid gap-3 md:grid-cols-2">
-                <label class="text-xs text-slate-300">
-                  Current / practice score
-                  <input
-                    type="text"
-                    class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-xs text-slate-100 outline-none focus:border-sky-500"
-                    placeholder="e.g. 1180"
-                  />
-                </label>
-                <label class="text-xs text-slate-300">
-                  Target score
-                  <input
-                    type="text"
-                    class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-xs text-slate-100 outline-none focus:border-sky-500"
-                    placeholder="e.g. 1400+"
-                  />
-                </label>
+              <h3 class="mt-1 text-base font-semibold text-slate-50">
+                Small group SAT classes
+              </h3>
+              <p class="mt-2 text-sm text-slate-200">
+                Prep alongside other motivated students in a structured class format that blends teaching, practice, and
+                discussion.
+              </p>
+              <ul class="mt-3 flex-1 space-y-1.5 text-sm text-slate-300">
+                <li>• Live, interactive lessons for Math and English</li>
+                <li>• Strategy-focused practice and review</li>
+                <li>• Peer accountability and shared progress</li>
+              </ul>
+              <span class="mt-4 text-xs font-semibold text-[#F6C453]">
+                Learn more →
+              </span>
+            </a>
+
+            <!-- Program 3: Intensive (links to bootcamp.html) -->
+            <a
+              href="bootcamp.html"
+              class="flex flex-col rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40 hover:border-[#22D3EE] hover:-translate-y-1 transition transform"
+            >
+              <div class="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[#22D3EE]">
+                Intensive
               </div>
-              <div>
-                <label class="text-xs text-slate-300">
-                  Target test date
-                  <input
-                    type="text"
-                    class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-xs text-slate-100 outline-none focus:border-sky-500"
-                    placeholder="e.g. March 2026 SAT"
-                  />
-                </label>
+              <h3 class="mt-1 text-base font-semibold text-slate-50">
+                SAT bootcamp
+              </h3>
+              <p class="mt-2 text-sm text-slate-200">
+                A short, intensive prep option designed to sharpen your strategies and timing before an upcoming test date.
+              </p>
+              <ul class="mt-3 flex-1 space-y-1.5 text-sm text-slate-300">
+                <li>• Focused review of high-impact concepts</li>
+                <li>• Timed practice sets with feedback</li>
+                <li>• Clear plan for what to do after bootcamp</li>
+              </ul>
+              <span class="mt-4 text-xs font-semibold text-[#22D3EE]">
+                Learn more →
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHY SAT SCORES MATTER SECTION -->
+      <section id="why-sat" class="min-h-[80vh] border-b border-slate-800 bg-gradient-to-b from-[#020617] to-[#020617] flex items-center">
+        <div class="mx-auto max-w-5xl px-4 py-12 md:py-20 section-hidden" data-animate-section>
+          <div class="max-w-3xl">
+            <h2 class="text-2xl md:text-3xl font-semibold text-slate-50">
+              Why strong SAT scores matter more than ever
+            </h2>
+            <p class="mt-4 text-sm md:text-base text-slate-200">
+              Gaining acceptance to top schools is harder than ever. Recently, with top universities like Stanford and Yale
+              moving away from test-blind or test-optional policies, strong SAT scores are so much more crucial than ever,
+              with some even emphasizing SAT scores as part of their admissions process. Don’t risk missing out—enroll and
+              boost your scores today!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT US SECTION -->
+      <section id="about" class="min-h-[80vh] border-b border-slate-800 bg-[#020617] flex items-center">
+        <div class="mx-auto max-w-5xl px-4 py-12 md:py-20 section-hidden" data-animate-section>
+          <div class="grid gap-8 md:grid-cols-[1.1fr,1fr] md:items-center">
+            <div>
+              <h2 class="text-2xl md:text-3xl font-semibold text-slate-50">
+                About the Delta Institute
+              </h2>
+              <p class="mt-4 text-sm md:text-base text-slate-200">
+                We are a team of experienced tutors and SAT top scorers that provide personalized, elite level tutoring for
+                both Math and English. In our classes, we teach you the exact strategies we used to excel on the SAT
+                ourselves.
+              </p>
+            </div>
+            <div class="rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40">
+              <div class="text-xs font-semibold uppercase tracking-[0.2em] text-[#22D3EE]">
+                How we help
               </div>
-              <div>
-                <label class="text-xs text-slate-300">
-                  Anything else we should know?
-                  <textarea
-                    class="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-xs text-slate-100 outline-none focus:border-sky-500"
-                    rows="3"
-                    placeholder="Preferred schedule, online/in-person, specific challenges, etc."
-                  ></textarea>
-                </label>
+              <ul class="mt-3 space-y-2 text-sm text-slate-200">
+                <li>• Explaining concepts in clear, step-by-step language.</li>
+                <li>• Helping you build a repeatable process for each SAT question type.</li>
+                <li>• Giving targeted practice so you don’t waste time on what you already know.</li>
+                <li>• Supporting you from your diagnostic test all the way to test day.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS SECTION -->
+      <section id="testimonials" class="min-h-[80vh] border-b border-slate-800 bg-gradient-to-b from-[#020617] to-[#0B3558] flex items-center">
+        <div class="mx-auto max-w-5xl px-4 py-12 md:py-20 section-hidden" data-animate-section>
+          <h2 class="text-2xl md:text-3xl font-semibold text-slate-50 text-center">
+            What our students say
+          </h2>
+          <div class="mt-8 grid gap-6 md:grid-cols-3">
+            <!-- Testimonial 1 -->
+            <div class="rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40 text-sm text-slate-200">
+              <p class="text-sm">
+                “Huge shoutout to Shivsai! Even though the program just started, he helped me review reading passages after
+                hours over Discord. His tips actually made the reading section way easier. Definitely worth it!”
+              </p>
+              <p class="mt-3 text-xs font-semibold text-[#F6C453]">
+                Allan, score 1520
+              </p>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40 text-sm text-slate-200">
+              <p class="text-sm">
+                “I thought I was too late to prep, but after contacting the Delta Institute, they stepped in and walked me
+                through the hardest grammar rules over Zoom. She saved me from making so many careless mistakes—I’m so
+                grateful!"
+              </p>
+              <p class="mt-3 text-xs font-semibold text-[#F6C453]">
+                Josephine, score 1410
+              </p>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40 text-sm text-slate-200">
+              <p class="text-sm">
+                “This program is new, but the people behind it are amazing. Lucas helped me one-on-one outside of the
+                sessions and taught me timing hacks for the math section. I ended up feeling way more confident on test
+                day.”
+              </p>
+              <p class="mt-3 text-xs font-semibold text-[#F6C453]">
+                Laura, score 1460
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT SECTION -->
+      <section id="contact" class="min-h-[80vh] bg-[#020617] flex items-center">
+        <div class="mx-auto max-w-5xl px-4 py-12 md:py-20 section-hidden" data-animate-section>
+          <div class="grid gap-10 md:grid-cols-[1.1fr,1fr] md:items-start">
+            <div>
+              <h2 class="text-2xl md:text-3xl font-semibold text-slate-50">
+                Ready to get started?
+              </h2>
+              <p class="mt-3 text-sm md:text-base text-slate-200">
+                Share a few details and we’ll follow up with a personalized recommendation for your SAT prep plan, along
+                with a free consultation.
+              </p>
+              <div class="mt-4 text-sm text-slate-100">
+                <p>
+                  📧 Email:
+                  <a
+                    href="mailto:lucashhcai@gmail.com"
+                    class="font-semibold text-[#22D3EE] underline-offset-4 hover:underline"
+                  >
+                    lucashhcai@gmail.com
+                  </a>
+                </p>
+                <p class="mt-1 text-xs text-slate-400">
+                  You can also include your high school, graduation year, any practice scores you have, and your target
+                  test date.
+                </p>
               </div>
-              <button
-                type="submit"
-                class="w-full rounded-xl bg-sky-500 px-4 py-2.5 text-xs font-semibold text-slate-950 shadow-md shadow-sky-500/30 transition hover:bg-sky-400"
+            </div>
+
+            <div class="rounded-3xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40">
+              <h3 class="text-base font-semibold text-slate-50">
+                Quick interest form
+              </h3>
+
+              <!-- Replace YOUR_FORMSPREE_ID with your actual ID from Formspree -->
+              <form
+                class="mt-4 space-y-3"
+                action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+                method="POST"
               >
-                Submit interest (demo)
-              </button>
-            </form>
+                <div>
+                  <label class="text-xs text-slate-200">
+                    Student name
+                    <input
+                      type="text"
+                      name="student_name"
+                      class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                      placeholder="First and last name"
+                      required
+                    />
+                  </label>
+                </div>
+                <div>
+                  <label class="text-xs text-slate-200">
+                    Parent / guardian email
+                    <input
+                      type="email"
+                      name="parent_email"
+                      class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                      placeholder="you@example.com"
+                      required
+                    />
+                  </label>
+                </div>
+                <div class="grid gap-3 md:grid-cols-2">
+                  <label class="text-xs text-slate-200">
+                    Current / practice SAT score
+                    <input
+                      type="text"
+                      name="current_score"
+                      class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                      placeholder="If you have one"
+                    />
+                  </label>
+                  <label class="text-xs text-slate-200">
+                    Target score
+                    <input
+                      type="text"
+                      name="target_score"
+                      class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                      placeholder="Your goal score"
+                    />
+                  </label>
+                </div>
+                <div>
+                  <label class="text-xs text-slate-200">
+                    Target test date
+                    <input
+                      type="text"
+                      name="test_date"
+                      class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                      placeholder="e.g. March SAT"
+                    />
+                  </label>
+                </div>
+                <div>
+                  <label class="text-xs text-slate-200">
+                    Anything else we should know?
+                    <textarea
+                      name="details"
+                      class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                      rows="3"
+                      placeholder="Preferred schedule, online/in-person, specific challenges, etc."
+                    ></textarea>
+                  </label>
+                </div>
+
+                <button
+                  type="submit"
+                  class="w-full rounded-xl bg-[#F6C453] px-4 py-2.5 text-xs font-semibold text-[#020617] shadow-md shadow-black/40 hover:bg-[#f8d16e] transition"
+                >
+                  Submit interest
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </section>
-
-      <!-- Footer -->
-      <footer class="border-t border-slate-800 py-6 text-xs text-slate-500">
-        <div class="mx-auto flex max-w-6xl flex-col justify-between gap-2 px-4 md:flex-row md:items-center">
-          <div>© 2025 Delta Institute of Academics. All rights reserved.</div>
-          <div class="flex flex-wrap gap-3">
-            <span>Focused SAT preparation.</span>
-            <a href="#top" class="underline-offset-4 hover:underline">
-              Back to top
-            </a>
-          </div>
-        </div>
-      </footer>
     </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800 bg-[#020617] py-4 text-xs text-slate-500">
+      <div class="mx-auto max-w-5xl px-4 flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+        <div>© 2025 Delta Institute of Academics. All rights reserved.</div>
+        <div class="flex items-center gap-3">
+          <span>Ace your SAT, or your money back.</span>
+          <a href="#top" class="underline-offset-4 hover:underline text-slate-300">
+            Back to top
+          </a>
+        </div>
+      </div>
+    </footer>
   </div>
+
+  <!-- JS: menu + section animations -->
+  <script>
+    const menuButton = document.getElementById('menuButton');
+    const sideMenuOverlay = document.getElementById('sideMenuOverlay');
+    const sideMenuPanel = document.getElementById('sideMenuPanel');
+    const navLinks = document.querySelectorAll('[data-nav-link]');
+
+    function openMenu() {
+      sideMenuOverlay.classList.remove('pointer-events-none');
+      sideMenuOverlay.classList.add('opacity-100');
+      sideMenuPanel.classList.remove('-translate-x-full');
+    }
+
+    function closeMenu() {
+      sideMenuOverlay.classList.add('pointer-events-none');
+      sideMenuOverlay.classList.remove('opacity-100');
+      sideMenuPanel.classList.add('-translate-x-full');
+    }
+
+    if (menuButton) {
+      menuButton.addEventListener('click', () => {
+        const isOpen = sideMenuOverlay.classList.contains('opacity-100');
+        if (isOpen) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      });
+    }
+
+    sideMenuOverlay.addEventListener('click', (e) => {
+      if (e.target === sideMenuOverlay) {
+        closeMenu();
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
+
+    // Section entrance animations (non-top section)
+    const animatedSections = document.querySelectorAll('[data-animate-section]');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('section-hidden');
+            entry.target.classList.add('section-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15
+      }
+    );
+
+    animatedSections.forEach((section) => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
