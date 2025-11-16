@@ -41,22 +41,21 @@
             </div>
           </button>
 
-          <!-- Logo + text -->
-          <div class="flex items-center gap-2">
-            <div class="h-9 w-9 rounded-xl bg-slate-900 flex items-center justify-center overflow-hidden border border-slate-700">
-              <!-- Put your logo file as logo-delta.png in the same folder as this HTML -->
-              <img src="logo-delta.png" alt="Delta Institute of Academics logo" class="h-full w-full object-contain" />
-            </div>
-            <div class="leading-tight">
-              <div class="text-sm font-semibold text-slate-50">
-                Delta Institute of Academics
-              </div>
-              <div class="text-[0.7rem] text-slate-400">
-                SAT Tutoring &amp; Test Prep
-              </div>
-            </div>
-          </div>
-        </div>
+          <!-- Logo + text (clickable, goes to Work in Progress) -->
+<a href="work-in-progress.html" class="flex items-center gap-2 group">
+  <div class="h-9 w-9 rounded-xl bg-slate-900 flex items-center justify-center overflow-hidden border border-slate-700">
+    <img src="logo-delta.png" alt="Delta Institute of Academics logo" class="h-full w-full object-contain" />
+  </div>
+  <div class="leading-tight">
+    <div class="text-sm font-semibold text-slate-50 group-hover:text-[#22D3EE] transition">
+      Delta Institute of Academics
+    </div>
+    <div class="text-[0.7rem] text-slate-400 group-hover:text-slate-200 transition">
+      SAT Tutoring &amp; Test Prep
+    </div>
+  </div>
+</a>
+
 
         <!-- Right side: CTA -->
         <a
