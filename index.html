@@ -413,7 +413,7 @@
               </div>
             </div>
 
-            <!-- Form card with overlay + required markers + summary -->
+            <!-- Form card with overlay + required markers + summary + preferred program -->
             <div class="relative rounded-3xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40">
               <h3 class="text-base font-semibold text-slate-50">
                 Quick interest form
@@ -444,6 +444,9 @@
                 action="https://formspree.io/f/mzzyaqbn"
                 method="POST"
               >
+                <!-- hidden source -->
+                <input type="hidden" name="page_source" value="Main page - general interest" />
+
                 <div>
                   <label class="text-xs text-slate-200">
                     Student name <span class="text-red-400">*</span>
@@ -505,6 +508,23 @@
                     </select>
                   </label>
                 </div>
+
+                <div>
+                  <label class="text-xs text-slate-200">
+                    Preferred program
+                    <select
+                      name="preferred_program"
+                      class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                    >
+                      <option value="">Select a program (optional)</option>
+                      <option value="Private SAT tutoring">Private SAT tutoring</option>
+                      <option value="Small group SAT classes">Small group SAT classes</option>
+                      <option value="SAT bootcamp">SAT bootcamp</option>
+                      <option value="Not sure yet">Not sure yet</option>
+                    </select>
+                  </label>
+                </div>
+
                 <div>
                   <label class="text-xs text-slate-200">
                     Anything else we should know?
@@ -637,6 +657,7 @@
         const currentScore = formData.get('current_score') || '';
         const targetScore = formData.get('target_score') || '';
         const testDate = formData.get('test_date') || '';
+        const preferredProgram = formData.get('preferred_program') || '';
         const details = formData.get('details') || '';
 
         try {
@@ -664,6 +685,7 @@
                   <div><span class="font-semibold text-slate-200">Current / practice SAT score:</span> <span class="text-slate-300">${currentScore || '—'}</span></div>
                   <div><span class="font-semibold text-slate-200">Target score:</span> <span class="text-slate-300">${targetScore || '—'}</span></div>
                   <div><span class="font-semibold text-slate-200">Target test date:</span> <span class="text-slate-300">${testDate || '—'}</span></div>
+                  <div><span class="font-semibold text-slate-200">Preferred program:</span> <span class="text-slate-300">${preferredProgram || '—'}</span></div>
                   <div><span class="font-semibold text-slate-200">Anything else we should know?:</span> <span class="text-slate-300">${details || '—'}</span></div>
                 </div>
               `;

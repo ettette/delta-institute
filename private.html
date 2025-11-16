@@ -8,7 +8,7 @@
 </head>
 <body class="bg-[#020617] text-slate-100">
   <div class="min-h-screen flex flex-col">
-    <!-- Simple header -->
+    <!-- Header -->
     <header class="border-b border-slate-800 bg-[#020617]/95 backdrop-blur">
       <div class="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
         <div class="flex items-center gap-2">
@@ -51,25 +51,129 @@
               <li>• Custom lesson plans built around your goals.</li>
               <li>• Deep review of your toughest question types.</li>
               <li>• Flexible pacing based on your schedule.</li>
-              <li>• Step-by-step strategies for Math and English.</li>
-              <li>• Ongoing feedback on practice tests and homework.</li>
+              <li>• Step-by-step strategies for both Math and English.</li>
+              <li>• Ongoing feedback on homework and practice tests.</li>
             </ul>
           </div>
 
-          <div class="rounded-2xl border border-slate-700 bg-slate-900/80 p-4 shadow-lg shadow-black/40">
+          <!-- Form card -->
+          <div class="relative rounded-3xl border border-slate-700 bg-slate-900/80 p-4 shadow-lg shadow-black/40">
             <h3 class="text-sm font-semibold text-slate-50">
-              Start with a free consultation
+              Quick interest form
             </h3>
-            <p class="mt-2 text-xs text-slate-300">
-              Tell us your target score, test date, and where you’re struggling most. We’ll help you decide if private tutoring
-              is the best fit.
+            <p class="mt-1 text-[0.7rem] text-slate-400">
+              <span class="text-red-400">*</span> indicates required fields.
             </p>
-            <a
-              href="index.html#contact"
-              class="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-[#F6C453] px-4 py-2 text-xs font-semibold text-[#020617] shadow-md shadow-black/40 hover:bg-[#f8d16e] transition"
+
+            <!-- SUCCESS OVERLAY -->
+            <div
+              id="formSuccessOverlay"
+              class="pointer-events-none opacity-0 absolute inset-0 flex items-center justify-center rounded-3xl bg-black/70 transition-opacity duration-300"
             >
-              Book a free SAT consultation
-            </a>
+              <div class="text-center px-6">
+                <p class="text-sm font-semibold text-slate-50">
+                  Form submitted
+                </p>
+                <p class="mt-1 text-xs text-slate-300">
+                  Thank you! We’ll follow up by email.
+                </p>
+              </div>
+            </div>
+
+            <form
+              id="interestForm"
+              class="mt-4 space-y-3"
+              action="https://formspree.io/f/mzzyaqbn"
+              method="POST"
+            >
+              <input type="hidden" name="page_source" value="Private SAT tutoring page" />
+
+              <div>
+                <label class="text-xs text-slate-200">
+                  Student name <span class="text-red-400">*</span>
+                  <input
+                    type="text"
+                    name="student_name"
+                    class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                    placeholder="First and last name"
+                    required
+                  />
+                </label>
+              </div>
+              <div>
+                <label class="text-xs text-slate-200">
+                  Parent / guardian email <span class="text-red-400">*</span>
+                  <input
+                    type="email"
+                    name="parent_email"
+                    class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                    placeholder="you@example.com"
+                    required
+                  />
+                </label>
+              </div>
+              <div class="grid gap-3 md:grid-cols-2">
+                <label class="text-xs text-slate-200">
+                  Current / practice SAT score
+                  <input
+                    type="text"
+                    name="current_score"
+                    class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                    placeholder="If you have one"
+                  />
+                </label>
+                <label class="text-xs text-slate-200">
+                  Target score
+                  <input
+                    type="text"
+                    name="target_score"
+                    class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                    placeholder="Your goal score"
+                  />
+                </label>
+              </div>
+              <div>
+                <label class="text-xs text-slate-200">
+                  Target test date
+                  <select
+                    name="test_date"
+                    class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                  >
+                    <option value="">Select a test date (optional)</option>
+                    <option value="December 6">December 6</option>
+                    <option value="March 14">March 14</option>
+                    <option value="May 2">May 2</option>
+                    <option value="June 6">June 6</option>
+                    <option value="Next school year">Next school year</option>
+                    <option value="Undecided">Undecided</option>
+                  </select>
+                </label>
+              </div>
+              <div>
+                <label class="text-xs text-slate-200">
+                  Anything else we should know?
+                  <textarea
+                    name="details"
+                    class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                    rows="3"
+                    placeholder="Preferred schedule, online/in-person, specific challenges, etc."
+                  ></textarea>
+                </label>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full rounded-xl bg-[#F6C453] px-4 py-2.5 text-xs font-semibold text-[#020617] shadow-md shadow-black/40 hover:bg-[#f8d16e] transition"
+              >
+                Submit interest
+              </button>
+            </form>
+
+            <!-- Submission summary -->
+            <div
+              id="submissionSummary"
+              class="mt-4 hidden rounded-2xl border border-slate-700 bg-slate-900/80 p-4 text-xs text-slate-200"
+            ></div>
           </div>
         </div>
       </section>
@@ -77,12 +181,83 @@
 
     <footer class="border-t border-slate-800 bg-[#020617] py-4 text-xs text-slate-500">
       <div class="mx-auto max-w-4xl px-4 flex items-center justify-between">
-        <span>© 2025 Delta Institute of Academics.</span>
+        <div>© 2025 Delta Institute of Academics.</div>
         <a href="index.html" class="underline-offset-4 hover:underline text-slate-300">
           Back to main site
         </a>
       </div>
     </footer>
   </div>
+
+  <script>
+    const interestForm = document.getElementById('interestForm');
+    const formSuccessOverlay = document.getElementById('formSuccessOverlay');
+    const submissionSummary = document.getElementById('submissionSummary');
+
+    if (interestForm && formSuccessOverlay) {
+      interestForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(interestForm);
+        const submitButton = interestForm.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitting...';
+
+        const studentName = formData.get('student_name') || '';
+        const parentEmail = formData.get('parent_email') || '';
+        const currentScore = formData.get('current_score') || '';
+        const targetScore = formData.get('target_score') || '';
+        const testDate = formData.get('test_date') || '';
+        const details = formData.get('details') || '';
+
+        try {
+          const response = await fetch(interestForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (response.ok) {
+            interestForm.reset();
+
+            formSuccessOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            formSuccessOverlay.classList.add('opacity-100');
+
+            if (submissionSummary) {
+              submissionSummary.innerHTML = `
+                <div class="font-semibold mb-2 text-slate-100">Copy of your responses</div>
+                <div class="space-y-1">
+                  <div><span class="font-semibold text-slate-200">Student name:</span> <span class="text-slate-300">${studentName || '—'}</span></div>
+                  <div><span class="font-semibold text-slate-200">Parent / guardian email:</span> <span class="text-slate-300">${parentEmail || '—'}</span></div>
+                  <div><span class="font-semibold text-slate-200">Current / practice SAT score:</span> <span class="text-slate-300">${currentScore || '—'}</span></div>
+                  <div><span class="font-semibold text-slate-200">Target score:</span> <span class="text-slate-300">${targetScore || '—'}</span></div>
+                  <div><span class="font-semibold text-slate-200">Target test date:</span> <span class="text-slate-300">${testDate || '—'}</span></div>
+                  <div><span class="font-semibold text-slate-200">Anything else we should know?:</span> <span class="text-slate-300">${details || '—'}</span></div>
+                </div>
+              `;
+              submissionSummary.classList.remove('hidden');
+            }
+
+            setTimeout(() => {
+              formSuccessOverlay.classList.remove('opacity-100');
+              formSuccessOverlay.classList.add('opacity-0');
+              setTimeout(() => {
+                formSuccessOverlay.classList.add('pointer-events-none');
+              }, 300);
+            }, 3000);
+          } else {
+            alert('There was a problem submitting the form. Please try again or email us directly.');
+          }
+        } catch (error) {
+          alert('There was a problem submitting the form. Please try again or email us directly.');
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = originalText;
+        }
+      });
+    }
+  </script>
 </body>
 </html>
