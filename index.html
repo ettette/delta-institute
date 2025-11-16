@@ -99,16 +99,16 @@
             Programs
           </a>
           <a data-nav-link href="#why-sat" class="block rounded-lg px-3 py-2 hover:bg-slate-900 hover:text-[#22D3EE]">
-            Why SAT Scores Matter
+            Why strong SAT scores matter
           </a>
           <a data-nav-link href="#about" class="block rounded-lg px-3 py-2 hover:bg-slate-900 hover:text-[#22D3EE]">
             About Us
           </a>
           <a data-nav-link href="#testimonials" class="block rounded-lg px-3 py-2 hover:bg-slate-900 hover:text-[#22D3EE]">
-            What Our Students Say
+            What our students say
           </a>
           <a data-nav-link href="#contact" class="block rounded-lg px-3 py-2 hover:bg-slate-900 hover:text-[#22D3EE]">
-            Contact Us
+            Contact
           </a>
         </nav>
 
@@ -218,7 +218,7 @@
           </div>
 
           <div class="mt-8 grid gap-6 md:grid-cols-3">
-            <!-- Program 1: Private (links to private.html) -->
+            <!-- Program 1: Private -->
             <a
               href="private.html"
               class="flex flex-col rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40 hover:border-[#22D3EE] hover:-translate-y-1 transition transform"
@@ -243,7 +243,7 @@
               </span>
             </a>
 
-            <!-- Program 2: Group (links to group.html) -->
+            <!-- Program 2: Group -->
             <a
               href="group.html"
               class="flex flex-col rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40 hover:border-[#F6C453] hover:-translate-y-1 transition transform"
@@ -268,7 +268,7 @@
               </span>
             </a>
 
-            <!-- Program 3: Intensive (links to bootcamp.html) -->
+            <!-- Program 3: Intensive -->
             <a
               href="bootcamp.html"
               class="flex flex-col rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40 hover:border-[#22D3EE] hover:-translate-y-1 transition transform"
@@ -413,13 +413,30 @@
               </div>
             </div>
 
-            <div class="rounded-3xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40">
+            <!-- Form card with overlay -->
+            <div class="relative rounded-3xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40">
               <h3 class="text-base font-semibold text-slate-50">
                 Quick interest form
               </h3>
 
+              <!-- SUCCESS OVERLAY -->
+              <div
+                id="formSuccessOverlay"
+                class="pointer-events-none opacity-0 absolute inset-0 flex items-center justify-center rounded-3xl bg-black/70 transition-opacity duration-300"
+              >
+                <div class="text-center px-6">
+                  <p class="text-sm font-semibold text-slate-50">
+                    Form submitted
+                  </p>
+                  <p class="mt-1 text-xs text-slate-300">
+                    Thank you! We’ll follow up by email.
+                  </p>
+                </div>
+              </div>
+
               <!-- Replace YOUR_FORMSPREE_ID with your actual ID from Formspree -->
               <form
+                id="interestForm"
                 class="mt-4 space-y-3"
                 action="https://formspree.io/f/mzzyaqbn"
                 method="POST"
@@ -518,7 +535,7 @@
     </footer>
   </div>
 
-  <!-- JS: menu + section animations -->
+  <!-- JS: menu + section animations + Formspree AJAX -->
   <script>
     const menuButton = document.getElementById('menuButton');
     const sideMenuOverlay = document.getElementById('sideMenuOverlay');
@@ -580,6 +597,54 @@
     animatedSections.forEach((section) => {
       observer.observe(section);
     });
+
+    // Formspree AJAX submit with overlay
+    const interestForm = document.getElementById('interestForm');
+    const formSuccessOverlay = document.getElementById('formSuccessOverlay');
+
+    if (interestForm && formSuccessOverlay) {
+      interestForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(interestForm);
+        const submitButton = interestForm.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitting...';
+
+        try {
+          const response = await fetch(interestForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (response.ok) {
+            interestForm.reset();
+            // Show overlay
+            formSuccessOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            formSuccessOverlay.classList.add('opacity-100');
+
+            // Hide overlay after a few seconds
+            setTimeout(() => {
+              formSuccessOverlay.classList.remove('opacity-100');
+              formSuccessOverlay.classList.add('opacity-0');
+              setTimeout(() => {
+                formSuccessOverlay.classList.add('pointer-events-none');
+              }, 300);
+            }, 3000);
+          } else {
+            alert('There was a problem submitting the form. Please try again or email us directly.');
+          }
+        } catch (error) {
+          alert('There was a problem submitting the form. Please try again or email us directly.');
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = originalText;
+        }
+      });
+    }
   </script>
 </body>
 </html>
