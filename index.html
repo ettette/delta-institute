@@ -20,6 +20,33 @@
       opacity: 1;
       transform: translateY(0);
     }
+    /* === Testimonials carousel layout === */
+    #testimonialViewport {
+      /* Slightly widen the visible window on desktop so the right card
+         isn’t cropped by a pixel or two */
+      overflow: hidden;
+    }
+
+    .testimonial-item {
+    flex: 0 0 100%;
+  }
+
+  @media (min-width: 768px) {
+    .testimonial-item {
+      /* slightly less than 1/3 so the three cards fit comfortably inside the viewport */
+      flex: 0 0 calc(100% / 3 - 20px);
+      margin: 0 0px; /* tiny horizontal margin between cards */
+    }
+  }
+
+
+      #testimonialViewport {
+        /* Pull the viewport out a bit so full cards are visible */
+        margin-inline: -0.5rem;
+        padding-inline: 0.5rem;
+      }
+    }
+
   </style>
 </head>
 <body class="bg-[#020617] text-slate-100">
@@ -460,7 +487,7 @@
         </div>
       </section>
 
-      <!-- TESTIMONIALS -->
+            <!-- TESTIMONIALS SECTION -->
       <section
         id="testimonials"
         class="min-h-[80vh] border-b border-slate-800 bg-gradient-to-b from-[#020617] to-[#0B3558] flex items-center"
@@ -469,54 +496,70 @@
           class="mx-auto max-w-5xl px-4 py-12 md:py-20 section-hidden"
           data-animate-section
         >
-          <h2
-            class="text-2xl md:text-3xl font-semibold text-slate-50 text-center"
-          >
-            What our students say
-          </h2>
-          <div class="mt-8 grid gap-6 md:grid-cols-3">
-            <!-- 1 -->
-            <div
-              class="rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40 text-sm text-slate-200"
+          <div class="text-center max-w-xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-semibold text-slate-50">
+              What our students say
+            </h2>
+            <p class="mt-3 text-sm text-slate-300">
+              Real feedback from students who’ve worked with the Delta Institute of Academics to raise their SAT scores.
+            </p>
+          </div>
+
+          <!-- Row: left arrow – viewport – right arrow -->
+          <div class="mt-8 flex items-center gap-3">
+            <!-- Left arrow (desktop) -->
+            <button
+              id="testimonialPrev"
+              type="button"
+              class="hidden md:flex h-9 w-9 rounded-full border border-slate-600 bg-slate-900/80 items-center justify-center hover:bg-slate-800 hover:border-slate-400 transition"
+              aria-label="Previous testimonials"
             >
-              <p class="text-sm">
-                “Huge shoutout to Shivsai! Even though the program just
-                started, he helped me review reading passages after hours over
-                Discord. His tips actually made the reading section way easier.
-                Definitely worth it!”
-              </p>
-              <p class="mt-3 text-xs font-semibold text-[#F6C453]">
-                Allan, 1430 to 1520
-              </p>
-            </div>
-            <!-- 2 -->
+              <span class="inline-block text-sm">&larr;</span>
+            </button>
+
+            <!-- Viewport -->
             <div
-              class="rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40 text-sm text-slate-200"
+              id="testimonialViewport"
+              class="flex-1 overflow-hidden"
             >
-              <p class="text-sm">
-                “I thought I was too late to prep, but after contacting the
-                Delta Institute, they stepped in and walked me through the
-                hardest grammar rules over Zoom. She saved me from making so
-                many careless mistakes—I’m so grateful!"
-              </p>
-              <p class="mt-3 text-xs font-semibold text-[#F6C453]">
-                Josephine, 1250 to 1410
-              </p>
+              <!-- Track: JS will insert all cards here -->
+              <div
+                id="testimonialTrack"
+                class="flex items-stretch gap-4 md:gap-6"
+              >
+                <!-- Cards injected by JS -->
+              </div>
             </div>
-            <!-- 3 -->
-            <div
-              class="rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40 text-sm text-slate-200"
+
+            <!-- Right arrow (desktop) -->
+            <button
+              id="testimonialNext"
+              type="button"
+              class="hidden md:flex h-9 w-9 rounded-full border border-slate-600 bg-slate-900/80 items-center justify-center hover:bg-slate-800 hover:border-slate-400 transition"
+              aria-label="Next testimonials"
             >
-              <p class="text-sm">
-                “This program is new, but the people behind it are amazing.
-                Lucas helped me one-on-one outside of the sessions and taught me
-                timing hacks for the math section. I ended up feeling way more
-                confident on test day.”
-              </p>
-              <p class="mt-3 text-xs font-semibold text-[#F6C453]">
-                Laura, 1390 to 1460
-              </p>
-            </div>
+              <span class="inline-block text-sm">&rarr;</span>
+            </button>
+          </div>
+
+          <!-- Mobile arrows below -->
+          <div class="mt-4 flex justify-center gap-3 md:hidden">
+            <button
+              id="testimonialPrevMobile"
+              type="button"
+              class="h-9 w-9 rounded-full border border-slate-600 bg-slate-900/80 flex items-center justify-center hover:bg-slate-800 hover:border-slate-400 transition"
+              aria-label="Previous testimonials"
+            >
+              <span class="inline-block text-sm">&larr;</span>
+            </button>
+            <button
+              id="testimonialNextMobile"
+              type="button"
+              class="h-9 w-9 rounded-full border border-slate-600 bg-slate-900/80 flex items-center justify-center hover:bg-slate-800 hover:border-slate-400 transition"
+              aria-label="Next testimonials"
+            >
+              <span class="inline-block text-sm">&rarr;</span>
+            </button>
           </div>
         </div>
       </section>
@@ -869,6 +912,185 @@
       }
     });
   }
+      // ====== TESTIMONIALS CAROUSEL ======
+      (function () {
+        const testimonialsData = [
+          {
+            text:
+              'Huge shoutout to Shivsai! Even though the program just started, he helped me review reading passages after hours over Discord. His tips actually made the reading section way easier. Definitely worth it!',
+            name: 'Aiden',
+            from: '1530',
+            to: '1580'
+          },
+          {
+            text:
+              'I thought I was too late to prep, but after contacting the Delta Institute, they stepped in and walked me through the hardest grammar rules over Zoom. She saved me from making so many careless mistakes—I’m so grateful!',
+            name: 'Josephine',
+            from: '1330',
+            to: '1410'
+          },
+          {
+            text:
+              'This program is new, but the people behind it are amazing. Lucas helped me one-on-one outside of the sessions and taught me timing hacks for the math section. I ended up feeling way more confident on test day.',
+            name: 'Laura',
+            from: '1210',
+            to: '1470'
+          },
+          {
+            text:
+              'I was freaking out with only 2 weeks to go before the SAT. Luckily, Max from the team gave me some last-minute math tricks, and I ended up boosting my score by 170 points! Seriously, couldn’t have done it without him.',
+            name: 'Thomas',
+            from: '950',
+            to: '1120'
+          },
+          {
+            text:
+              'I only had a week to prepare, and honestly, I wasn’t expecting much. But Jessica went out of her way to review some tricky reading problems with me over the weekend. Thanks to her, my writing score jumped big time!',
+            name: 'Allan',
+            from: '1480',
+            to: '1530'
+          },
+          {
+            text:
+              'This institute has helped me out so much! From providing useful tips to reviewing problems in depth, this institute has single-handedly improved my score by over 100 points!',
+            name: 'Michael',
+            from: '1280',
+            to: '1390'
+          }
+        ];
+
+        const track = document.getElementById('testimonialTrack');
+        const viewport = document.getElementById('testimonialViewport');
+        const btnPrev = document.getElementById('testimonialPrev');
+        const btnNext = document.getElementById('testimonialNext');
+        const btnPrevMobile = document.getElementById('testimonialPrevMobile');
+        const btnNextMobile = document.getElementById('testimonialNextMobile');
+
+        if (!track || !viewport || !testimonialsData.length) return;
+
+        const VISIBLE = 3; // how many real cards we want visible on desktop
+        const CLONES = VISIBLE; // how many to clone on each side for looping
+
+        // Build extended data: [last3, all, first3]
+        const extended = [
+          ...testimonialsData.slice(-CLONES),
+          ...testimonialsData,
+          ...testimonialsData.slice(0, CLONES)
+        ];
+
+        // Render all cards
+        track.innerHTML = extended
+          .map(
+            (t) => `
+          <div class="testimonial-item rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40 text-sm text-slate-200 flex flex-col">
+            <p class="text-sm italic">${t.text}</p>
+            <p class="mt-auto pt-4 text-xs font-semibold text-[#F6C453]">
+              ${t.name}
+              <span class="text-slate-300"> &middot; </span>
+              <span class="text-slate-200">${t.from} &rarr; ${t.to}</span>
+            </p>
+          </div>`
+          )
+          .join('');
+
+        const items = Array.from(track.querySelectorAll('.testimonial-item'));
+        if (!items.length) return;
+
+        let stepSize = 0;
+
+        function measureStepSize() {
+          if (items.length > 1) {
+            const first = items[0].getBoundingClientRect();
+            const second = items[1].getBoundingClientRect();
+            stepSize = second.left - first.left;
+          } else {
+            stepSize = items[0].getBoundingClientRect().width;
+          }
+        }
+
+        // Start centered on first "real" item
+        let currentIndex = CLONES;
+        let isAnimating = false;
+
+        function applyTransform(animate = true) {
+          track.style.transition = animate ? 'transform 600ms ease-out' : 'none';
+          // No fade – just slide by full card width
+          track.style.transform = `translateX(${-stepSize * currentIndex}px)`;
+        }
+
+        function handleResize() {
+          measureStepSize();
+          applyTransform(false);
+        }
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        const totalReal = testimonialsData.length;
+
+        track.addEventListener('transitionend', () => {
+          isAnimating = false;
+
+          if (currentIndex >= totalReal + CLONES) {
+            currentIndex -= totalReal;
+            applyTransform(false);
+          } else if (currentIndex < CLONES) {
+            currentIndex += totalReal;
+            applyTransform(false);
+          }
+        });
+
+        function goNext() {
+          if (isAnimating) return;
+          isAnimating = true;
+          currentIndex += 1;
+          applyTransform(true);
+          restartAuto();
+        }
+
+        function goPrev() {
+          if (isAnimating) return;
+          isAnimating = true;
+          currentIndex -= 1;
+          applyTransform(true);
+          restartAuto();
+        }
+
+        // Hook up buttons
+        if (btnNext) btnNext.addEventListener('click', goNext);
+        if (btnPrev) btnPrev.addEventListener('click', goPrev);
+        if (btnNextMobile) btnNextMobile.addEventListener('click', goNext);
+        if (btnPrevMobile) btnPrevMobile.addEventListener('click', goPrev);
+
+        // Auto-cycle
+        const AUTO_INTERVAL_MS = 7000;
+        let autoTimer = null;
+
+        function startAuto() {
+          if (autoTimer) clearInterval(autoTimer);
+          autoTimer = setInterval(goNext, AUTO_INTERVAL_MS);
+        }
+
+        function restartAuto() {
+          if (!autoTimer) return;
+          clearInterval(autoTimer);
+          startAuto();
+        }
+
+        // Pause auto when hovering over the viewport (desktop)
+        viewport.addEventListener('mouseenter', () => {
+          if (autoTimer) {
+            clearInterval(autoTimer);
+            autoTimer = null;
+          }
+        });
+        viewport.addEventListener('mouseleave', () => {
+          if (!autoTimer) startAuto();
+        });
+
+        startAuto();
+      })();
+
 </script>
 
 </body>
