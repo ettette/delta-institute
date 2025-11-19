@@ -23,56 +23,267 @@
     /* === Testimonials carousel layout === */
     #testimonialViewport {
       /* Slightly widen the visible window on desktop so the right card
-         isn’t cropped by a pixel or two */
+         isn't cropped by a pixel or two */
       overflow: hidden;
     }
 
     .testimonial-item {
-    flex: 0 0 100%;
-  }
-
-  @media (min-width: 768px) {
-    .testimonial-item {
-      /* slightly less than 1/3 so the three cards fit comfortably inside the viewport */
-      flex: 0 0 calc(100% / 3 - 20px);
-      margin: 0 0px; /* tiny horizontal margin between cards */
+      flex: 0 0 100%;
     }
-  }
 
-
-      #testimonialViewport {
-        /* Pull the viewport out a bit so full cards are visible */
-        margin-inline: -0.5rem;
-        padding-inline: 0.5rem;
+    @media (min-width: 768px) {
+      .testimonial-item {
+        /* slightly less than 1/3 so the three cards fit comfortably inside the viewport */
+        flex: 0 0 calc(100% / 3 - 20px);
+        margin: 0 0px; /* tiny horizontal margin between cards */
       }
+    }
+
+    #testimonialViewport {
+      /* Pull the viewport out a bit so full cards are visible */
+      margin-inline: -0.5rem;
+      padding-inline: 0.5rem;
+    }
+
+    /* Light theme (current design) */
+    html[data-theme="light"] body {
+      position: relative;
+      background-color: #ffffff !important;
+      background-image:
+        radial-gradient(circle 600px at 10% 15%, rgba(34, 211, 238, 0.25) 0%, transparent 60%),
+        radial-gradient(circle 600px at 90% 85%, rgba(246, 196, 83, 0.25) 0%, transparent 60%),
+        radial-gradient(circle 500px at 50% 50%, rgba(34, 211, 238, 0.15) 0%, transparent 70%) !important;
+      background-attachment: fixed !important;
+      background-repeat: no-repeat !important;
+      color: #020617;
+    }
+
+    /* Dark theme (navy gradients + cards) */
+    html[data-theme="dark"] {
+      color-scheme: dark;
+    }
+
+    html[data-theme="dark"] body {
+      background-color: #020617 !important;
+      background-image:
+        radial-gradient(circle 600px at 10% 15%, rgba(34, 211, 238, 0.25) 0%, transparent 60%),
+        radial-gradient(circle 600px at 90% 85%, rgba(246, 196, 83, 0.25) 0%, transparent 60%),
+        radial-gradient(circle 500px at 50% 50%, rgba(15, 23, 42, 0.7) 0%, transparent 70%) !important;
+      background-attachment: fixed !important;
+      background-repeat: no-repeat !important;
+      color: #e5e7eb;
+    }
+
+    html[data-theme="dark"] header {
+      background-color: #020617f2 !important;
+      border-color: #1f2937 !important;
+    }
+
+    html[data-theme="dark"] footer {
+      background-color: #020617 !important;
+      border-color: #1f2937 !important;
+      color: #9ca3af !important;
+    }
+
+    html[data-theme="dark"] #sideMenuPanel {
+      background-color: #020617 !important;
+      border-color: #1f2937 !important;
+    }
+
+    html[data-theme="dark"] #top {
+      background-image: linear-gradient(
+        135deg,
+        #020617 0%,
+        #020617 40%,
+        #0b3558 100%
+      ) !important;
+    }
+
+    html[data-theme="dark"] #programs,
+    html[data-theme="dark"] #about,
+    html[data-theme="dark"] #testimonials,
+    html[data-theme="dark"] #contact {
+      background-color: #020617 !important;
+      border-color: #1f2937 !important;
+    }
+
+    /* Hero chip in dark mode */
+    html[data-theme="dark"] .hero-chip {
+      border-color: #1e293b !important;
+      background: radial-gradient(circle at 0% 50%, rgba(34, 211, 238, 0.18), transparent 60%),
+                  radial-gradient(circle at 100% 50%, rgba(34, 211, 238, 0.12), transparent 60%),
+                  #020617;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 1), 0 0 22px rgba(15, 23, 42, 0.9);
+    }
+
+    /* Program cards (main three) */
+    html[data-theme="dark"] .program-card {
+      background-color: rgba(15, 23, 42, 0.9) !important;
+      border-color: #1f2937 !important;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+      transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+    }
+
+    /* Teal glow (left / right cards) in dark mode */
+    html[data-theme="dark"] .program-card-teal:hover {
+      border-color: rgba(56, 189, 248, 0.9) !important;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 1), 0 0 26px rgba(56, 189, 248, 0.7);
+      transform: translateY(-4px);
+    }
+
+    /* Gold glow (middle card) in dark mode */
+    html[data-theme="dark"] .program-card-gold:hover {
+      border-color: rgba(246, 196, 83, 0.95) !important;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 1), 0 0 26px rgba(246, 196, 83, 0.8);
+      transform: translateY(-4px);
+    }
+
+    /* Light mode: match the same glow behavior */
+    html:not([data-theme="dark"]) .program-card-teal:hover {
+      border-color: rgba(56, 189, 248, 0.9) !important;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.08), 0 0 26px rgba(56, 189, 248, 0.7);
+      transform: translateY(-4px);
+    }
+
+    html:not([data-theme="dark"]) .program-card-gold:hover {
+      border-color: rgba(246, 196, 83, 0.95) !important;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.08), 0 0 26px rgba(246, 196, 83, 0.8);
+      transform: translateY(-4px);
+    }
+
+    /* Info cards: same base surface, no glow */
+    html[data-theme="dark"] .info-card {
+      background-color: rgba(15, 23, 42, 0.9) !important;
+      border-color: #1f2937 !important;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.8);
+    }
+
+    /* Testimonials carousel arrows */
+    html[data-theme="dark"] .testimonial-arrow {
+      border-color: #1f2937 !important;
+      background-color: rgba(15, 23, 42, 0.95) !important;
+      color: #e5e7eb !important;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.95);
+      transition: border-color 200ms ease, box-shadow 200ms ease, background-color 200ms ease, color 200ms ease;
+    }
+
+    html[data-theme="dark"] .testimonial-arrow:hover {
+      border-color: rgba(56, 189, 248, 0.95) !important;
+      background-color: #020617 !important;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 1), 0 0 24px rgba(56, 189, 248, 0.8);
+      color: #f9fafb !important;
+    }
+
+    /* Cards and borders (fallback) */
+    html[data-theme="dark"] .bg-black {
+      background-color: rgba(15, 23, 42, 0.9) !important;
+    }
+    html[data-theme="dark"] .border-slate-300 {
+      border-color: #374151 !important;
+    }
+
+    /* Light mode offwhite cards (hero right, about card, interest form) */
+    html:not([data-theme="dark"]) .offwhite-card {
+      background-color: #f9fafb !important;
+    }
+    html:not([data-theme="dark"]) .offwhite-card .text-white,
+    html:not([data-theme="dark"]) .offwhite-card .text-slate-200,
+    html:not([data-theme="dark"]) .offwhite-card .text-slate-300 {
+      color: #0f172a !important; /* dark navy/gray for strong contrast */
+    }
+
+    /* Dark mode form fields */
+    html[data-theme="dark"] input[type="text"],
+    html[data-theme="dark"] input[type="email"],
+    html[data-theme="dark"] input[type="tel"],
+    html[data-theme="dark"] input[type="number"],
+    html[data-theme="dark"] select,
+    html[data-theme="dark"] textarea {
+      background-color: #020617 !important;
+      color: #e5e7eb !important;
+      border-color: #374151 !important;
+    }
+
+    html[data-theme="dark"] input::placeholder,
+    html[data-theme="dark"] textarea::placeholder {
+      color: #64748b !important;
+    }
+
+    /* Light mode form fields (anytime theme is not dark) */
+    html:not([data-theme="dark"]) input[type="text"],
+    html:not([data-theme="dark"]) input[type="email"],
+    html:not([data-theme="dark"]) input[type="tel"],
+    html:not([data-theme="dark"]) input[type="number"],
+    html:not([data-theme="dark"]) select,
+    html:not([data-theme="dark"]) textarea {
+      background-color: #f8fafc !important; /* very light gray */
+      color: #020617 !important;
+    }
+
+    /* Typography tweaks for dark mode */
+    html[data-theme="dark"] .text-slate-950,
+    html[data-theme="dark"] .text-slate-900,
+    html[data-theme="dark"] .text-slate-800,
+    html[data-theme="dark"] .text-slate-700 {
+      color: #f9fafb !important;
+    }
+
+    html[data-theme="dark"] .text-slate-600,
+    html[data-theme="dark"] .text-slate-500 {
+      color: #e5e7eb !important;
+    }
+
+    html[data-theme="dark"] .text-slate-400,
+    html[data-theme="dark"] .text-slate-300 {
+      color: #cbd5f5 !important;
+    }
+
+    /* Theme toggle pill */
+    .theme-toggle {
+      border-radius: 9999px;
+      border: 1px solid #cbd5f5;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background-color: #f8fafc;
+      color: #0f172a;
+      transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+    }
+
+    html[data-theme="dark"] .theme-toggle {
+      background-color: #0f172a;
+      color: #e5e7eb;
+      border-color: #334155;
     }
 
   </style>
 </head>
-<body class="bg-[#020617] text-slate-100">
+<body class="text-slate-950" style="color: #020617 !important;">
   <div class="min-h-screen flex flex-col">
     <!-- HEADER -->
-    <header class="sticky top-0 z-40 border-b border-slate-800 bg-[#020617]/95 backdrop-blur">
-      <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+    <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
+      <div class="flex items-center justify-between px-1 py-3">
         <!-- LEFT: menu + logo -->
-        <div class="flex items-center gap-3">
+        <div class="flex items-center gap-2">
           <!-- Menu button -->
           <button
             id="menuButton"
-            class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-700 bg-slate-900 shadow-sm hover:bg-slate-800 transition"
+            class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 bg-slate-50 shadow-sm hover:bg-slate-100 transition"
             aria-label="Open navigation menu"
           >
             <div class="flex flex-col justify-center space-y-[3px]">
-              <span class="block h-[1px] w-5 rounded-full bg-slate-100"></span>
-              <span class="block h-[1px] w-5 rounded-full bg-slate-100"></span>
-              <span class="block h-[1px] w-5 rounded-full bg-slate-100"></span>
+              <span class="block h-[1px] w-5 rounded-full bg-slate-900"></span>
+              <span class="block h-[1px] w-5 rounded-full bg-slate-900"></span>
+              <span class="block h-[1px] w-5 rounded-full bg-slate-900"></span>
             </div>
           </button>
 
           <!-- Logo + text (clickable, goes to Work in Progress page) -->
           <a href="work-in-progress.html" class="flex items-center gap-2 group">
             <div
-              class="h-9 w-9 rounded-xl bg-slate-900 flex items-center justify-center overflow-hidden border border-slate-700"
+              class="h-9 w-9 rounded-xl bg-slate-50 flex items-center justify-center overflow-hidden border border-slate-300"
             >
               <img
                 src="logo-delta.png"
@@ -82,12 +293,12 @@
             </div>
             <div class="leading-tight">
               <div
-                class="text-sm font-semibold text-slate-50 group-hover:text-[#22D3EE] transition"
+                class="text-sm font-semibold text-slate-950 group-hover:text-[#22D3EE] transition"
               >
                 Delta Institute of Academics
               </div>
               <div
-                class="text-[0.7rem] text-slate-400 group-hover:text-slate-200 transition"
+                class="text-[0.7rem] text-slate-600 group-hover:text-slate-800 transition"
               >
                 SAT Tutoring &amp; Test Prep
               </div>
@@ -95,28 +306,37 @@
           </a>
         </div>
 
-        <!-- RIGHT: CTA -->
-        <a
-          href="#contact"
-          class="hidden sm:inline-block rounded-full bg-[#F6C453] px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-wide text-[#020617] shadow-sm hover:bg-[#f8d16e] transition"
-        >
-          Free Consultation
-        </a>
+        <!-- RIGHT: CTA + theme toggle -->
+        <div class="flex items-center gap-2">
+          <button
+            id="themeToggle"
+            class="theme-toggle"
+            type="button"
+          >
+            Dark mode
+          </button>
+          <a
+            href="#contact"
+            class="hidden sm:inline-block rounded-full bg-[#F6C453] px-4 py-1.5 text-[0.7rem] font-semibold uppercase tracking-wide text-white shadow-sm hover:bg-[#f8d16e] transition"
+          >
+            Free Consultation
+          </a>
+        </div>
       </div>
     </header>
 
     <!-- SLIDE-OUT MENU -->
     <div
       id="sideMenuOverlay"
-      class="fixed inset-0 z-30 bg-black/60 opacity-0 pointer-events-none transition-opacity duration-300 ease-out"
+      class="fixed inset-0 z-30 bg-black/20 opacity-0 pointer-events-none transition-opacity duration-300 ease-out"
     >
       <aside
         id="sideMenuPanel"
-        class="absolute inset-y-0 left-0 w-64 max-w-[80%] bg-[#020617] border-r border-slate-800 transform -translate-x-full transition-transform duration-300 ease-out flex flex-col"
+        class="absolute inset-y-0 left-0 w-64 max-w-[80%] bg-white border-r border-slate-200 transform -translate-x-full transition-transform duration-300 ease-out flex flex-col"
       >
-        <div class="px-4 py-4 border-b border-slate-800 flex items-center gap-2">
+        <div class="px-2 py-4 border-b border-slate-200 flex items-center gap-2">
           <div
-            class="h-9 w-9 rounded-xl bg-slate-900 flex items-center justify-center overflow-hidden border border-slate-700"
+            class="h-9 w-9 rounded-xl bg-slate-50 flex items-center justify-center overflow-hidden border border-slate-300"
           >
             <img
               src="logo-delta.png"
@@ -125,58 +345,58 @@
             />
           </div>
           <div class="leading-tight">
-            <div class="text-sm font-semibold text-slate-50">
+            <div class="text-sm font-semibold text-slate-950">
               Delta Institute of Academics
             </div>
-            <div class="text-[0.7rem] text-slate-400">
+            <div class="text-[0.7rem] text-slate-600">
               SAT Tutoring &amp; Test Prep
             </div>
           </div>
         </div>
 
-        <nav class="flex-1 px-3 py-3 text-sm text-slate-200 space-y-1">
+        <nav class="flex-1 px-2 py-3 text-sm text-slate-800 space-y-1">
           <a
             data-nav-link
             href="#top"
-            class="block rounded-lg px-3 py-2 hover:bg-slate-900 hover:text-[#22D3EE]"
+            class="block rounded-lg px-3 py-2 hover:bg-slate-100 hover:text-[#22D3EE]"
           >
             Overview
           </a>
           <a
             data-nav-link
             href="#programs"
-            class="block rounded-lg px-3 py-2 hover:bg-slate-900 hover:text-[#22D3EE]"
+            class="block rounded-lg px-3 py-2 hover:bg-slate-100 hover:text-[#22D3EE]"
           >
             Programs
           </a>
           <a
             data-nav-link
             href="#about"
-            class="block rounded-lg px-3 py-2 hover:bg-slate-900 hover:text-[#22D3EE]"
+            class="block rounded-lg px-3 py-2 hover:bg-slate-100 hover:text-[#22D3EE]"
           >
             About Us
           </a>
           <a
             data-nav-link
             href="#testimonials"
-            class="block rounded-lg px-3 py-2 hover:bg-slate-900 hover:text-[#22D3EE]"
+            class="block rounded-lg px-3 py-2 hover:bg-slate-100 hover:text-[#22D3EE]"
           >
             What our students say
           </a>
           <a
             data-nav-link
             href="#contact"
-            class="block rounded-lg px-3 py-2 hover:bg-slate-900 hover:text-[#22D3EE]"
+            class="block rounded-lg px-3 py-2 hover:bg-slate-100 hover:text-[#22D3EE]"
           >
             Contact
           </a>
         </nav>
 
-        <div class="px-3 py-4 border-t border-slate-800">
+        <div class="px-2 py-4 border-t border-slate-200">
           <a
             data-nav-link
             href="#contact"
-            class="block w-full text-center rounded-full bg-[#F6C453] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-[#020617] shadow-sm hover:bg-[#f8d16e] transition"
+            class="block w-full text-center rounded-full bg-[#F6C453] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white shadow-sm hover:bg-[#f8d16e] transition"
           >
             Book a Free SAT Consultation
           </a>
@@ -188,111 +408,109 @@
     <main class="flex-1">
       <!-- HERO (TOP) -->
       <section
-  id="top"
-  class="min-h-[80vh] border-b border-slate-800 bg-gradient-to-br from-[#020617] via-[#020617] to-[#0B3558] flex items-center"
->
-  <div class="mx-auto max-w-5xl px-4 py-12 md:py-20">
-    <div class="grid gap-10 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:items-center">
-      <!-- LEFT: headline, text, buttons, stats -->
-      <div>
-        <div
-  class="inline-flex items-center rounded-full border border-slate-700 bg-slate-900/70 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em]"
->
-  <span class="text-[#22D3EE]">SAT Prep</span>
-  <span class="mx-1 text-slate-400">•</span>
-  <span class="text-[#F6C453]">Tutoring</span>
-  <span class="mx-1 text-slate-400">•</span>
-  <span class="text-[#22D3EE]">Score Strategy</span>
-</div>
+        id="top"
+        class="min-h-[80vh] border-b border-slate-200 flex items-center"
+      >
+        <div class="mx-auto max-w-5xl px-2 py-12 md:py-20">
+          <div class="grid gap-10 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:items-center">
+            <!-- LEFT: headline, text, buttons, stats -->
+            <div>
+              <div
+                class="hero-chip inline-flex items-center rounded-full border border-slate-300 bg-slate-50/70 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em]"
+              >
+                <span class="text-[#22D3EE]">SAT Prep</span>
+                <span class="mx-1 text-slate-600">•</span>
+                <span class="text-[#F6C453]">Tutoring</span>
+                <span class="mx-1 text-slate-600">•</span>
+                <span class="text-[#22D3EE]">Score Strategy</span>
+              </div>
 
+              <h1 class="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-950">
+                Ace your SAT,
+                <span class="text-[#F6C453]">or your money back.</span>
+              </h1>
 
-        <h1 class="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-slate-50">
-          Ace your SAT,
-          <span class="text-[#F6C453]">or your money back.</span>
-        </h1>
+              <p class="mt-4 max-w-xl text-sm md:text-base text-slate-800">
+                At Delta Institute of Academics, we specialize in SAT test preparation. Every student receives a clear plan,
+                expert instruction, and targeted practice designed to turn effort into real score gains.
+              </p>
 
-        <p class="mt-4 max-w-xl text-sm md:text-base text-slate-200">
-          At Delta Institute of Academics, we specialize in SAT test preparation. Every student receives a clear plan,
-          expert instruction, and targeted practice designed to turn effort into real score gains.
-        </p>
+              <div class="mt-7 flex flex-wrap gap-3">
+                <a
+                  href="#contact"
+                  class="flex-1 sm:flex-none rounded-xl bg-[#F6C453] px-6 py-2.5 text-sm font-semibold text-white text-center shadow-md shadow-black/10 hover:bg-[#f8d16e] transition"
+                >
+                  Book a free consultation
+                </a>
+                <a
+                  href="#programs"
+                  class="flex-1 sm:flex-none rounded-xl border border-[#22D3EE] px-6 py-2.5 text-sm font-semibold text-[#22D3EE] text-center bg-transparent hover:bg-slate-50 transition"
+                >
+                  View SAT programs
+                </a>
+              </div>
 
-        <div class="mt-7 flex flex-wrap gap-3">
-          <a
-            href="#contact"
-            class="flex-1 sm:flex-none rounded-xl bg-[#F6C453] px-6 py-2.5 text-sm font-semibold text-[#020617] text-center shadow-md shadow-black/40 hover:bg-[#f8d16e] transition"
-          >
-            Book a free consultation
-          </a>
-          <a
-            href="#programs"
-            class="flex-1 sm:flex-none rounded-xl border border-[#22D3EE] px-6 py-2.5 text-sm font-semibold text-[#22D3EE] text-center bg-transparent hover:bg-slate-900 transition"
-          >
-            View SAT programs
-          </a>
+              <!-- STATS STRIP -->
+              <div class="mt-8 grid gap-6 sm:grid-cols-3 text-slate-950">
+                <div>
+                  <div class="text-2xl md:text-3xl font-semibold text-[#22D3EE]">+120</div>
+                  <div class="text-sm md:text-base text-slate-800">Average score increase*</div>
+                </div>
+                <div>
+                  <div class="text-2xl md:text-3xl font-semibold text-[#22D3EE]">1:1 &amp; Group</div>
+                  <div class="text-sm md:text-base text-slate-800">Flexible formats</div>
+                </div>
+                <div>
+                  <div class="text-2xl md:text-3xl font-semibold text-[#22D3EE]">Top 0.5%</div>
+                  <div class="text-sm md:text-base text-slate-800">Tutor SAT scores</div>
+                </div>
+              </div>
+              <p class="mt-3 text-[0.7rem] text-slate-600 max-w-xl">
+                *Typical for students who complete their diagnostic, homework, and recommended practice tests.
+              </p>
+            </div>
+
+            <!-- RIGHT: Why SAT scores matter + How we help -->
+            <div class="offwhite-card rounded-3xl border border-slate-300 bg-black p-5 shadow-lg shadow-black/10">
+              <h2 class="text-base md:text-lg font-semibold text-white">
+                Why strong SAT scores matter more than ever
+              </h2>
+              <p class="mt-3 text-xs sm:text-sm text-slate-200">
+                Gaining acceptance to top schools is harder than ever. With universities like Stanford and Yale moving away
+                from strictly test-blind or purely test-optional policies, strong SAT scores are more important than ever in
+                the admissions process. A standout score can separate you from thousands of similar applicants.
+              </p>
+
+              <!-- HOW WE HELP (replaces old bullet list) -->
+              <div class="mt-4 pt-4 border-t border-slate-200">
+                <div class="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[#22D3EE]">
+                  How we help
+                </div>
+                <ul class="mt-2 space-y-1.5 text-xs sm:text-sm text-slate-200">
+                  <li>• Targeted reading and grammar strategies designed for the digital SAT.</li>
+                  <li>• Focused math instruction on high-value topics like algebra, functions, and data.</li>
+                  <li>• Personalized study plans that connect your practice directly to your score goals.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <!-- STATS STRIP -->
-        <div class="mt-8 grid gap-6 sm:grid-cols-3 text-slate-100">
-          <div>
-            <div class="text-2xl md:text-3xl font-semibold text-[#22D3EE]">+120</div>
-            <div class="text-sm md:text-base text-slate-200">Average score increase*</div>
-          </div>
-          <div>
-            <div class="text-2xl md:text-3xl font-semibold text-[#22D3EE]">1:1 &amp; Group</div>
-            <div class="text-sm md:text-base text-slate-200">Flexible formats</div>
-          </div>
-          <div>
-            <div class="text-2xl md:text-3xl font-semibold text-[#22D3EE]">Top 0.5%</div>
-            <div class="text-sm md:text-base text-slate-200">Tutor SAT scores</div>
-          </div>
-        </div>
-        <p class="mt-3 text-[0.7rem] text-slate-400 max-w-xl">
-          *Typical for students who complete their diagnostic, homework, and recommended practice tests.
-        </p>
-      </div>
-
-      <!-- RIGHT: Why SAT scores matter + How we help -->
-      <div class="rounded-3xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40">
-        <h2 class="text-base md:text-lg font-semibold text-slate-50">
-          Why strong SAT scores matter more than ever
-        </h2>
-        <p class="mt-3 text-xs sm:text-sm text-slate-200">
-          Gaining acceptance to top schools is harder than ever. With universities like Stanford and Yale moving away
-          from strictly test-blind or purely test-optional policies, strong SAT scores are more important than ever in
-          the admissions process. A standout score can separate you from thousands of similar applicants.
-        </p>
-
-        <!-- HOW WE HELP (replaces old bullet list) -->
-        <div class="mt-4 pt-4 border-t border-slate-800">
-          <div class="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[#22D3EE]">
-            How we help
-          </div>
-          <ul class="mt-2 space-y-1.5 text-xs sm:text-sm text-slate-200">
-            <li>• Targeted reading and grammar strategies designed for the digital SAT.</li>
-            <li>• Focused math instruction on high-value topics like algebra, functions, and data.</li>
-            <li>• Personalized study plans that connect your practice directly to your score goals.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+      </section>
 
       <!-- PROGRAMS + MINI CARDS -->
       <section
         id="programs"
-        class="min-h-[80vh] border-b border-slate-800 bg-[#020617] flex items-center"
+        class="min-h-[80vh] border-b border-slate-200 flex items-center"
       >
         <div
-          class="mx-auto max-w-5xl px-4 py-12 md:py-20 section-hidden"
+          class="mx-auto max-w-5xl px-3 py-12 md:py-20 section-hidden"
           data-animate-section
         >
           <div class="max-w-2xl">
-            <h2 class="text-2xl md:text-3xl font-semibold text-slate-50">
+            <h2 class="text-2xl md:text-3xl font-semibold text-slate-950">
               Choose how you want to prep
             </h2>
-            <p class="mt-3 text-sm md:text-base text-slate-300">
+            <p class="mt-3 text-sm md:text-base text-slate-600">
               Pick the SAT program that fits your schedule, learning style, and
               goals. All options include personalized guidance for both Math and
               English.
@@ -307,14 +525,14 @@
               <!-- Private -->
               <a
                 href="private.html"
-                class="flex flex-col rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40 hover:border-[#22D3EE] hover:-translate-y-1 transition transform"
+                class="program-card program-card-teal flex flex-col rounded-2xl border border-slate-300 bg-black p-5 shadow-lg shadow-black/10 hover:border-[#22D3EE] hover:-translate-y-1 transition transform"
               >
                 <div
                   class="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[#22D3EE]"
                 >
                   Private
                 </div>
-                <h3 class="mt-1 text-base font-semibold text-slate-50">
+                <h3 class="mt-1 text-base font-semibold text-white">
                   Private SAT tutoring
                 </h3>
                 <p class="mt-2 text-sm text-slate-200">
@@ -336,14 +554,14 @@
               <!-- Group -->
               <a
                 href="group.html"
-                class="flex flex-col rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40 hover:border-[#F6C453] hover:-translate-y-1 transition transform"
+                class="program-card program-card-gold flex flex-col rounded-2xl border border-slate-300 bg-black p-5 shadow-lg shadow-black/10 hover:border-[#F6C453] hover:-translate-y-1 transition transform"
               >
                 <div
                   class="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[#F6C453]"
                 >
                   Group
                 </div>
-                <h3 class="mt-1 text-base font-semibold text-slate-50">
+                <h3 class="mt-1 text-base font-semibold text-white">
                   Small group SAT classes
                 </h3>
                 <p class="mt-2 text-sm text-slate-200">
@@ -365,14 +583,14 @@
               <!-- Bootcamp -->
               <a
                 href="bootcamp.html"
-                class="flex flex-col rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40 hover:border-[#22D3EE] hover:-translate-y-1 transition transform"
+                class="program-card program-card-teal flex flex-col rounded-2xl border border-slate-300 bg-black p-5 shadow-lg shadow-black/10 hover:border-[#22D3EE] hover:-translate-y-1 transition transform"
               >
                 <div
                   class="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-[#22D3EE]"
                 >
                   Intensive
                 </div>
-                <h3 class="mt-1 text-base font-semibold text-slate-50">
+                <h3 class="mt-1 text-base font-semibold text-white">
                   SAT bootcamp
                 </h3>
                 <p class="mt-2 text-sm text-slate-200">
@@ -395,7 +613,7 @@
             <!-- RIGHT: MINI HIGHLIGHT CARDS -->
             <div class="space-y-4">
               <div
-                class="rounded-2xl border border-slate-700 bg-slate-900/80 p-4 shadow-lg shadow-black/40"
+                class="info-card rounded-2xl border border-slate-300 bg-black p-4 shadow-lg shadow-black/10"
               >
                 <div class="text-sm font-semibold text-[#22D3EE]">
                   Personalized SAT tutoring
@@ -406,7 +624,7 @@
                 </p>
               </div>
               <div
-                class="rounded-2xl border border-slate-700 bg-slate-900/80 p-4 shadow-lg shadow-black/40"
+                class="info-card rounded-2xl border border-slate-300 bg-black p-4 shadow-lg shadow-black/10"
               >
                 <div class="text-sm font-semibold text-[#F6C453]">
                   100% money back guarantee
@@ -417,7 +635,7 @@
                 </p>
               </div>
               <div
-                class="rounded-2xl border border-slate-700 bg-slate-900/80 p-4 shadow-lg shadow-black/40"
+                class="info-card rounded-2xl border border-slate-300 bg-black p-4 shadow-lg shadow-black/10"
               >
                 <div class="text-sm font-semibold text-[#22D3EE]">
                   Connect with peers
@@ -435,21 +653,21 @@
       <!-- ABOUT -->
       <section
         id="about"
-        class="min-h-[80vh] border-b border-slate-800 bg-[#020617] flex items-center"
+        class="min-h-[80vh] border-b border-slate-200 flex items-center"
       >
         <div
-          class="mx-auto max-w-5xl px-4 py-12 md:py-20 section-hidden"
+          class="mx-auto max-w-5xl px-3 py-12 md:py-20 section-hidden"
           data-animate-section
         >
           <div
             class="grid gap-8 md:grid-cols-[1.1fr,1fr] md:items-center"
           >
             <div>
-              <h2 class="text-2xl md:text-3xl font-semibold text-slate-50">
+              <h2 class="text-2xl md:text-3xl font-semibold text-slate-950">
                 About the Delta Institute
               </h2>
               <p
-                class="mt-4 text-sm md:text-base text-slate-200"
+                class="mt-4 text-sm md:text-base text-slate-800"
               >
                 We are a team of experienced tutors and SAT top scorers that
                 provide personalized, elite level tutoring for both Math and
@@ -458,7 +676,7 @@
               </p>
             </div>
             <div
-              class="rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40"
+              class="program-card offwhite-card rounded-2xl border border-slate-300 bg-black p-5 shadow-lg shadow-black/10"
             >
               <div
                 class="text-xs font-semibold uppercase tracking-[0.2em] text-[#22D3EE]"
@@ -487,20 +705,20 @@
         </div>
       </section>
 
-            <!-- TESTIMONIALS SECTION -->
+      <!-- TESTIMONIALS SECTION -->
       <section
         id="testimonials"
-        class="min-h-[80vh] border-b border-slate-800 bg-gradient-to-b from-[#020617] to-[#0B3558] flex items-center"
+        class="min-h-[80vh] border-b border-slate-200 flex items-center"
       >
         <div
-          class="mx-auto max-w-5xl px-4 py-12 md:py-20 section-hidden"
+          class="mx-auto max-w-5xl px-3 py-12 md:py-20 section-hidden"
           data-animate-section
         >
           <div class="text-center max-w-xl mx-auto">
-            <h2 class="text-2xl md:text-3xl font-semibold text-slate-50">
+            <h2 class="text-2xl md:text-3xl font-semibold text-slate-950">
               What our students say
             </h2>
-            <p class="mt-3 text-sm text-slate-300">
+            <p class="mt-3 text-sm text-slate-600">
               Real feedback from students who’ve worked with the Delta Institute of Academics to raise their SAT scores.
             </p>
           </div>
@@ -511,10 +729,10 @@
             <button
               id="testimonialPrev"
               type="button"
-              class="hidden md:flex h-9 w-9 rounded-full border border-slate-600 bg-slate-900/80 items-center justify-center hover:bg-slate-800 hover:border-slate-400 transition"
+              class="testimonial-arrow hidden md:flex h-9 w-9 rounded-full border border-slate-300 bg-slate-50/80 items-center justify-center hover:bg-slate-100 hover:border-slate-400 transition"
               aria-label="Previous testimonials"
             >
-              <span class="inline-block text-sm">&larr;</span>
+              <span class="inline-block text-sm text-slate-950">&larr;</span>
             </button>
 
             <!-- Viewport -->
@@ -535,10 +753,10 @@
             <button
               id="testimonialNext"
               type="button"
-              class="hidden md:flex h-9 w-9 rounded-full border border-slate-600 bg-slate-900/80 items-center justify-center hover:bg-slate-800 hover:border-slate-400 transition"
+              class="testimonial-arrow hidden md:flex h-9 w-9 rounded-full border border-slate-300 bg-slate-50/80 items-center justify-center hover:bg-slate-100 hover:border-slate-400 transition"
               aria-label="Next testimonials"
             >
-              <span class="inline-block text-sm">&rarr;</span>
+              <span class="inline-block text-sm text-slate-950">&rarr;</span>
             </button>
           </div>
 
@@ -547,18 +765,18 @@
             <button
               id="testimonialPrevMobile"
               type="button"
-              class="h-9 w-9 rounded-full border border-slate-600 bg-slate-900/80 flex items-center justify-center hover:bg-slate-800 hover:border-slate-400 transition"
+              class="testimonial-arrow h-9 w-9 rounded-full border border-slate-300 bg-slate-50/80 flex items-center justify-center hover:bg-slate-100 hover:border-slate-400 transition"
               aria-label="Previous testimonials"
             >
-              <span class="inline-block text-sm">&larr;</span>
+              <span class="inline-block text-sm text-slate-950">&larr;</span>
             </button>
             <button
               id="testimonialNextMobile"
               type="button"
-              class="h-9 w-9 rounded-full border border-slate-600 bg-slate-900/80 flex items-center justify-center hover:bg-slate-800 hover:border-slate-400 transition"
+              class="testimonial-arrow h-9 w-9 rounded-full border border-slate-300 bg-slate-50/80 flex items-center justify-center hover:bg-slate-100 hover:border-slate-400 transition"
               aria-label="Next testimonials"
             >
-              <span class="inline-block text-sm">&rarr;</span>
+              <span class="inline-block text-sm text-slate-950">&rarr;</span>
             </button>
           </div>
         </div>
@@ -567,25 +785,25 @@
       <!-- CONTACT -->
       <section
         id="contact"
-        class="min-h-[80vh] bg-[#020617] flex items-center"
+        class="min-h-[80vh] flex items-center"
       >
         <div
-          class="mx-auto max-w-5xl px-4 py-12 md:py-20 section-hidden"
+          class="mx-auto max-w-5xl px-3 py-12 md:py-20 section-hidden"
           data-animate-section
         >
           <div class="grid gap-10 md:grid-cols-[1.1fr,1fr] md:items-start">
             <div>
-              <h2 class="text-2xl md:text-3xl font-semibold text-slate-50">
+              <h2 class="text-2xl md:text-3xl font-semibold text-slate-950">
                 Ready to get started?
               </h2>
               <p
-                class="mt-3 text-sm md:text-base text-slate-200"
+                class="mt-3 text-sm md:text-base text-slate-800"
               >
                 Share a few details and we’ll follow up with a personalized
                 recommendation for your SAT prep plan, along with a free
                 consultation.
               </p>
-              <div class="mt-4 text-sm text-slate-100">
+              <div class="mt-4 text-sm text-slate-950">
                 <p>
                   📧 Email:
                   <a
@@ -595,7 +813,7 @@
                     lucashhcai@gmail.com
                   </a>
                 </p>
-                <p class="mt-1 text-xs text-slate-400">
+                <p class="mt-1 text-xs text-slate-600">
                   You can also include your high school, graduation year, any
                   practice scores you have, and your target test date.
                 </p>
@@ -604,25 +822,25 @@
 
             <!-- FORM -->
             <div
-              class="relative rounded-3xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40"
+              class="relative offwhite-card rounded-3xl border border-slate-300 bg-black p-5 shadow-lg shadow-black/10"
             >
-              <h3 class="text-base font-semibold text-slate-50">
+              <h3 class="text-base font-semibold text-white">
                 Quick interest form
               </h3>
-              <p class="mt-1 text-[0.7rem] text-slate-400">
+              <p class="mt-1 text-[0.7rem] text-slate-300">
                 <span class="text-red-400">*</span> indicates required fields.
               </p>
 
               <!-- SUCCESS OVERLAY -->
               <div
                 id="formSuccessOverlay"
-                class="pointer-events-none opacity-0 absolute inset-0 flex items-center justify-center rounded-3xl bg-black/70 transition-opacity duration-300"
+                class="pointer-events-none opacity-0 absolute inset-0 flex items-center justify-center rounded-3xl bg-black/30 transition-opacity duration-300"
               >
                 <div class="text-center px-6">
-                  <p class="text-sm font-semibold text-slate-50">
+                  <p class="text-sm font-semibold text-white">
                     Form submitted
                   </p>
-                  <p class="mt-1 text-xs text-slate-300">
+                  <p class="mt-1 text-xs text-slate-200">
                     Thank you! We’ll follow up by email.
                   </p>
                 </div>
@@ -646,7 +864,7 @@
       <input
         type="text"
         name="student_name"
-        class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+        class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-950 outline-none focus:border-[#22D3EE]"
         placeholder="First and last name"
         required
       />
@@ -660,7 +878,7 @@
       <input
         type="email"
         name="parent_email"
-        class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+        class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-950 outline-none focus:border-[#22D3EE]"
         placeholder="parent@example.com"
         required
       />
@@ -671,7 +889,7 @@
       <input
         type="email"
         name="student_email"
-        class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+        class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-950 outline-none focus:border-[#22D3EE]"
         placeholder="student@example.com (optional)"
       />
     </label>
@@ -683,7 +901,7 @@
       <input
         type="text"
         name="current_score"
-        class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+        class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-950 outline-none focus:border-[#22D3EE]"
         placeholder="If you have one"
       />
     </label>
@@ -692,7 +910,7 @@
       <input
         type="text"
         name="target_score"
-        class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+        class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-950 outline-none focus:border-[#22D3EE]"
         placeholder="Your goal score"
       />
     </label>
@@ -703,7 +921,7 @@
       Target test date
       <select
         name="test_date"
-        class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+        class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-950 outline-none focus:border-[#22D3EE]"
       >
         <option value="">Select a test date (optional)</option>
         <option value="December 6">December 6</option>
@@ -721,7 +939,7 @@
       Preferred program
       <select
         name="preferred_program"
-        class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+        class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-950 outline-none focus:border-[#22D3EE]"
       >
         <option value="">Select a program (optional)</option>
         <option value="Private SAT tutoring">Private SAT tutoring</option>
@@ -737,7 +955,7 @@
       Anything else we should know?
       <textarea
         name="details"
-        class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+        class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-950 outline-none focus:border-[#22D3EE]"
         rows="3"
         placeholder="Preferred schedule, online/in-person, specific challenges, etc."
       ></textarea>
@@ -746,7 +964,7 @@
 
   <button
     type="submit"
-    class="w-full rounded-xl bg-[#F6C453] px-4 py-2.5 text-xs font-semibold text-[#020617] shadow-md shadow-black/40 hover:bg-[#f8d16e] transition"
+    class="w-full rounded-xl bg-[#F6C453] px-4 py-2.5 text-xs font-semibold text-white shadow-md shadow-black/10 hover:bg-[#f8d16e] transition"
   >
     Submit interest
   </button>
@@ -755,9 +973,9 @@
 
               <!-- SUMMARY -->
               <div
-                id="submissionSummary"
-                class="mt-4 hidden rounded-2xl border border-slate-700 bg-slate-900/80 p-4 text-xs text-slate-200"
-              ></div>
+              id="submissionSummary"
+              class="mt-4 hidden rounded-2xl border border-slate-300 bg-black p-4 text-xs text-slate-200"
+            ></div>
             </div>
           </div>
         </div>
@@ -766,17 +984,17 @@
 
     <!-- FOOTER -->
     <footer
-      class="border-t border-slate-800 bg-[#020617] py-4 text-xs text-slate-500"
+      class="border-t border-slate-200 bg-white py-4 text-xs text-slate-500"
     >
       <div
-        class="mx-auto max-w-5xl px-4 flex flex-col gap-2 md:flex-row md:items-center md:justify-between"
+        class="mx-auto max-w-5xl px-2 flex flex-col gap-2 md:flex-row md:items-center md:justify-between"
       >
-        <div>© 2025 Delta Institute of Academics. All rights reserved.</div>
+        <div> 2025 Delta Institute of Academics. All rights reserved.</div>
         <div class="flex items-center gap-3">
           <span>Ace your SAT, or your money back.</span>
           <a
             href="#top"
-            class="underline-offset-4 hover:underline text-slate-300"
+            class="underline-offset-4 hover:underline text-slate-600"
           >
             Back to top
           </a>
@@ -787,6 +1005,32 @@
 
   <!-- JS -->
   <script>
+  (function () {
+    const root = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+
+    const saved = localStorage.getItem('theme');
+    const initial = saved === 'dark' ? 'dark' : 'light';
+    root.setAttribute('data-theme', initial);
+
+    function updateButton(theme) {
+      if (!toggle) return;
+      toggle.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
+    }
+
+    updateButton(initial);
+
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateButton(next);
+      });
+    }
+  })();
+
   const menuButton = document.getElementById('menuButton');
   const sideMenuOverlay = document.getElementById('sideMenuOverlay');
   const sideMenuPanel = document.getElementById('sideMenuPanel');
@@ -874,7 +1118,7 @@
 
           if (submissionSummary) {
             submissionSummary.innerHTML = `
-              <div class="font-semibold mb-2 text-slate-100">Copy of your responses</div>
+              <div class="font-semibold mb-2 text-white">Copy of your responses</div>
               <div class="space-y-1">
                 <div><span class="font-semibold text-slate-200">Student name:</span> <span class="text-slate-300">${studentName || '—'}</span></div>
                 <div><span class="font-semibold text-slate-200">Parent / guardian email:</span> <span class="text-slate-300">${parentEmail || '—'}</span></div>
@@ -982,11 +1226,11 @@
         track.innerHTML = extended
           .map(
             (t) => `
-          <div class="testimonial-item rounded-2xl border border-slate-700 bg-slate-900/80 p-5 shadow-lg shadow-black/40 text-sm text-slate-200 flex flex-col">
+          <div class="testimonial-item rounded-2xl border border-slate-300 bg-black p-5 shadow-lg shadow-black/10 text-sm text-slate-200 flex flex-col">
             <p class="text-sm italic">${t.text}</p>
             <p class="mt-auto pt-4 text-xs font-semibold text-[#F6C453]">
               ${t.name}
-              <span class="text-slate-300"> &middot; </span>
+              <span class="text-slate-400"> &middot; </span>
               <span class="text-slate-200">${t.from} &rarr; ${t.to}</span>
             </p>
           </div>`

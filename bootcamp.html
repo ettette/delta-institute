@@ -5,41 +5,175 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SAT Bootcamp | Delta Institute of Academics</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Light theme */
+    html[data-theme="light"] body {
+      position: relative;
+      background-color: #ffffff !important;
+      background-image:
+        radial-gradient(circle 600px at 10% 15%, rgba(34, 211, 238, 0.25) 0%, transparent 60%),
+        radial-gradient(circle 600px at 90% 85%, rgba(246, 196, 83, 0.25) 0%, transparent 60%),
+        radial-gradient(circle 500px at 50% 50%, rgba(34, 211, 238, 0.15) 0%, transparent 70%) !important;
+      background-attachment: fixed !important;
+      background-repeat: no-repeat !important;
+      color: #020617;
+    }
+
+    /* Dark theme */
+    html[data-theme="dark"] {
+      color-scheme: dark;
+    }
+
+    html[data-theme="dark"] body {
+      background-color: #020617 !important;
+      background-image:
+        radial-gradient(circle 600px at 10% 15%, rgba(34, 211, 238, 0.25) 0%, transparent 60%),
+        radial-gradient(circle 600px at 90% 85%, rgba(246, 196, 83, 0.25) 0%, transparent 60%),
+        radial-gradient(circle 500px at 50% 50%, rgba(15, 23, 42, 0.7) 0%, transparent 70%) !important;
+      background-attachment: fixed !important;
+      background-repeat: no-repeat !important;
+      color: #e5e7eb;
+    }
+
+    html[data-theme="dark"] header {
+      background-color: #020617f2 !important;
+      border-color: #1f2937 !important;
+    }
+
+    html[data-theme="dark"] footer {
+      background-color: #020617 !important;
+      border-color: #1f2937 !important;
+      color: #9ca3af !important;
+    }
+
+    /* Typography tweaks for dark mode */
+    html[data-theme="dark"] .text-slate-950,
+    html[data-theme="dark"] .text-slate-900,
+    html[data-theme="dark"] .text-slate-800,
+    html[data-theme="dark"] .text-slate-700 {
+      color: #f9fafb !important;
+    }
+
+    html[data-theme="dark"] .text-slate-600,
+    html[data-theme="dark"] .text-slate-500 {
+      color: #e5e7eb !important;
+    }
+
+    html[data-theme="dark"] .text-slate-400,
+    html[data-theme="dark"] .text-slate-300 {
+      color: #cbd5f5 !important;
+    }
+
+    /* Cards and borders (fallback) */
+    html[data-theme="dark"] .bg-black {
+      background-color: rgba(15, 23, 42, 0.9) !important;
+    }
+    html[data-theme="dark"] .border-slate-300 {
+      border-color: #374151 !important;
+    }
+
+    /* Light mode offwhite cards (interest form) */
+    html:not([data-theme="dark"]) .offwhite-card {
+      background-color: #f9fafb !important;
+    }
+    html:not([data-theme="dark"]) .offwhite-card .text-white,
+    html:not([data-theme="dark"]) .offwhite-card .text-slate-200,
+    html:not([data-theme="dark"]) .offwhite-card .text-slate-300 {
+      color: #0f172a !important;
+    }
+
+    /* Dark mode form fields */
+    html[data-theme="dark"] input[type="text"],
+    html[data-theme="dark"] input[type="email"],
+    html[data-theme="dark"] input[type="tel"],
+    html[data-theme="dark"] input[type="number"],
+    html[data-theme="dark"] select,
+    html[data-theme="dark"] textarea {
+      background-color: #020617 !important;
+      color: #e5e7eb !important;
+      border-color: #374151 !important;
+    }
+
+    html[data-theme="dark"] input::placeholder,
+    html[data-theme="dark"] textarea::placeholder {
+      color: #64748b !important;
+    }
+
+    /* Light mode form fields (anytime theme is not dark) */
+    html:not([data-theme="dark"]) input[type="text"],
+    html:not([data-theme="dark"]) input[type="email"],
+    html:not([data-theme="dark"]) input[type="tel"],
+    html:not([data-theme="dark"]) input[type="number"],
+    html:not([data-theme="dark"]) select,
+    html:not([data-theme="dark"]) textarea {
+      background-color: #f8fafc !important; /* very light gray */
+      color: #020617 !important;
+    }
+
+    /* Theme toggle pill */
+    .theme-toggle {
+      border-radius: 9999px;
+      border: 1px solid #cbd5f5;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background-color: #f8fafc;
+      color: #0f172a;
+      transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+    }
+
+    html[data-theme="dark"] .theme-toggle {
+      background-color: #0f172a;
+      color: #e5e7eb;
+      border-color: #334155;
+    }
+  </style>
 </head>
-<body class="bg-[#020617] text-slate-100">
+<body class="text-slate-950">
   <div class="min-h-screen flex flex-col">
     <!-- Header -->
-    <header class="border-b border-slate-800 bg-[#020617]/95 backdrop-blur">
-      <div class="mx-auto flex max-w-4xl items-center justify-between px-4 py-3">
+    <header class="border-b border-slate-200 bg-white/95 backdrop-blur">
+      <div class="mx-auto flex max-w-4xl items-center justify-between px-2 py-3">
         <a href="work-in-progress.html" class="flex items-center gap-2 group">
-  <div class="h-9 w-9 rounded-xl bg-slate-900 flex items-center justify-center overflow-hidden border border-slate-700">
+  <div class="h-9 w-9 rounded-xl bg-slate-50 flex items-center justify-center overflow-hidden border border-slate-300">
     <img src="logo-delta.png" alt="Delta Institute of Academics logo" class="h-full w-full object-contain" />
   </div>
   <div class="leading-tight">
-    <div class="text-sm font-semibold text-slate-50 group-hover:text-[#22D3EE] transition">
+    <div class="text-sm font-semibold text-slate-950 group-hover:text-[#22D3EE] transition">
       Delta Institute of Academics
     </div>
-    <div class="text-[0.7rem] text-slate-400 group-hover:text-slate-200 transition">
+    <div class="text-[0.7rem] text-slate-600 group-hover:text-slate-800 transition">
       SAT Tutoring &amp; Test Prep
     </div>
   </div>
 </a>
 
-        <a
-          href="index.html"
-          class="text-xs text-slate-300 underline-offset-4 hover:underline"
-        >
-          ← Back to main site
-        </a>
+        <div class="flex items-center gap-2">
+          <button
+            id="themeToggle"
+            class="theme-toggle"
+            type="button"
+          >
+            Dark mode
+          </button>
+          <a
+            href="index.html"
+            class="text-xs text-slate-600 underline-offset-4 hover:underline"
+          >
+            ← Back to main site
+          </a>
+        </div>
       </div>
     </header>
 
     <main class="flex-1">
-      <section class="mx-auto max-w-4xl px-4 py-10 md:py-16">
-        <h1 class="text-2xl md:text-3xl font-semibold text-slate-50">
+      <section class="mx-auto max-w-4xl px-2 py-10 md:py-16">
+        <h1 class="text-2xl md:text-3xl font-semibold text-slate-950">
           SAT Bootcamp
         </h1>
-        <p class="mt-3 text-sm md:text-base text-slate-200">
+        <p class="mt-3 text-sm md:text-base text-slate-800">
           A short, intensive prep option designed to sharpen your strategies and timing before an upcoming test date.
         </p>
 
@@ -48,7 +182,7 @@
             <h2 class="text-sm font-semibold uppercase tracking-[0.18em] text-[#22D3EE]">
               What you get
             </h2>
-            <ul class="mt-3 space-y-2 text-sm text-slate-200">
+            <ul class="mt-3 space-y-2 text-sm text-slate-800">
               <li>• Focused review of high-impact SAT concepts.</li>
               <li>• Timed practice sets with coaching and feedback.</li>
               <li>• Test-day strategies for pacing, guessing, and focus.</li>
@@ -58,24 +192,24 @@
           </div>
 
           <!-- Form card -->
-          <div class="relative rounded-3xl border border-slate-700 bg-slate-900/80 p-4 shadow-lg shadow-black/40">
-            <h3 class="text-sm font-semibold text-slate-50">
+          <div class="relative offwhite-card rounded-3xl border border-slate-300 bg-black p-4 shadow-lg shadow-black/10">
+            <h3 class="text-sm font-semibold text-white">
               Quick interest form
             </h3>
-            <p class="mt-1 text-[0.7rem] text-slate-400">
+            <p class="mt-1 text-[0.7rem] text-slate-300">
               <span class="text-red-400">*</span> indicates required fields.
             </p>
 
             <!-- SUCCESS OVERLAY -->
             <div
               id="formSuccessOverlay"
-              class="pointer-events-none opacity-0 absolute inset-0 flex items-center justify-center rounded-3xl bg-black/70 transition-opacity duration-300"
+              class="pointer-events-none opacity-0 absolute inset-0 flex items-center justify-center rounded-3xl bg-black/30 transition-opacity duration-300"
             >
               <div class="text-center px-6">
-                <p class="text-sm font-semibold text-slate-50">
+                <p class="text-sm font-semibold text-white">
                   Form submitted
                 </p>
-                <p class="mt-1 text-xs text-slate-300">
+                <p class="mt-1 text-xs text-slate-200">
                   Thank you! We’ll follow up by email.
                 </p>
               </div>
@@ -95,7 +229,7 @@
                   <input
                     type="text"
                     name="student_name"
-                    class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                    class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-950 outline-none focus:border-[#22D3EE]"
                     placeholder="First and last name"
                     required
                   />
@@ -107,7 +241,7 @@
                   <input
                     type="email"
                     name="parent_email"
-                    class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                    class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-950 outline-none focus:border-[#22D3EE]"
                     placeholder="you@example.com"
                     required
                   />
@@ -119,7 +253,7 @@
                   <input
                     type="text"
                     name="current_score"
-                    class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                    class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-950 outline-none focus:border-[#22D3EE]"
                     placeholder="If you have one"
                   />
                 </label>
@@ -128,7 +262,7 @@
                   <input
                     type="text"
                     name="target_score"
-                    class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                    class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-950 outline-none focus:border-[#22D3EE]"
                     placeholder="Your goal score"
                   />
                 </label>
@@ -138,7 +272,7 @@
                   Target test date
                   <select
                     name="test_date"
-                    class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                    class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-950 outline-none focus:border-[#22D3EE]"
                   >
                     <option value="">Select a test date (optional)</option>
                     <option value="December 6">December 6</option>
@@ -155,7 +289,7 @@
                   Anything else we should know?
                   <textarea
                     name="details"
-                    class="mt-1 w-full rounded-lg border border-slate-700 bg-[#020617] px-3 py-2 text-xs text-slate-100 outline-none focus:border-[#22D3EE]"
+                    class="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-950 outline-none focus:border-[#22D3EE]"
                     rows="3"
                     placeholder="Preferred schedule, online/in-person, specific challenges, etc."
                   ></textarea>
@@ -164,7 +298,7 @@
 
               <button
                 type="submit"
-                class="w-full rounded-xl bg-[#F6C453] px-4 py-2.5 text-xs font-semibold text-[#020617] shadow-md shadow-black/40 hover:bg-[#f8d16e] transition"
+                class="w-full rounded-xl bg-[#F6C453] px-4 py-2.5 text-xs font-semibold text-white shadow-md shadow-black/10 hover:bg-[#f8d16e] transition"
               >
                 Submit interest
               </button>
@@ -173,17 +307,17 @@
             <!-- Submission summary -->
             <div
               id="submissionSummary"
-              class="mt-4 hidden rounded-2xl border border-slate-700 bg-slate-900/80 p-4 text-xs text-slate-200"
+              class="mt-4 hidden rounded-2xl border border-slate-300 bg-black p-4 text-xs text-slate-200"
             ></div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="border-t border-slate-800 bg-[#020617] py-4 text-xs text-slate-500">
-      <div class="mx-auto max-w-4xl px-4 flex items-center justify-between">
-        <div>© 2025 Delta Institute of Academics.</div>
-        <a href="index.html" class="underline-offset-4 hover:underline text-slate-300">
+    <footer class="border-t border-slate-200 bg-white py-4 text-xs text-slate-500">
+      <div class="mx-auto max-w-4xl px-2 flex items-center justify-between">
+        <div> 2025 Delta Institute of Academics.</div>
+        <a href="index.html" class="underline-offset-4 hover:underline text-slate-600">
           Back to main site
         </a>
       </div>
@@ -191,6 +325,32 @@
   </div>
 
   <script>
+    (function () {
+      const root = document.documentElement;
+      const toggle = document.getElementById('themeToggle');
+
+      const saved = localStorage.getItem('theme');
+      const initial = saved === 'dark' ? 'dark' : 'light';
+      root.setAttribute('data-theme', initial);
+
+      function updateButton(theme) {
+        if (!toggle) return;
+        toggle.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
+      }
+
+      updateButton(initial);
+
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+          const next = current === 'dark' ? 'light' : 'dark';
+          root.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+          updateButton(next);
+        });
+      }
+    })();
+
     const interestForm = document.getElementById('interestForm');
     const formSuccessOverlay = document.getElementById('formSuccessOverlay');
     const submissionSummary = document.getElementById('submissionSummary');
@@ -228,7 +388,7 @@
 
             if (submissionSummary) {
               submissionSummary.innerHTML = `
-                <div class="font-semibold mb-2 text-slate-100">Copy of your responses</div>
+                <div class="font-semibold mb-2 text-white">Copy of your responses</div>
                 <div class="space-y-1">
                   <div><span class="font-semibold text-slate-200">Student name:</span> <span class="text-slate-300">${studentName || '—'}</span></div>
                   <div><span class="font-semibold text-slate-200">Parent / guardian email:</span> <span class="text-slate-300">${parentEmail || '—'}</span></div>
